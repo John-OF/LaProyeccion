@@ -70,6 +70,28 @@ namespace LaProyeccion.Core
             // SFX sources: one-shots, no loop.
             sfxSource = CreateSource("SFX_Source", sfxGroup, null, loop: false, volume: 1f, autoPlay: false);
             sfxWorldSource = CreateSource("SFX_World_Source", sfxGroup, null, loop: false, volume: 1f, autoPlay: false);
+
+            ApplySavedVolumes();
+        }
+
+        /// <summary>
+        /// Reaplica los volúmenes guardados por el menú de Opciones al mixer.
+        /// Los nombres de parámetro y las claves de PlayerPrefs coinciden con
+        /// LaProyeccion.UI.OptionsController, para que la config valga también
+        /// dentro del juego (los valores del mixer no persisten entre sesiones).
+        /// </summary>
+        void ApplySavedVolumes()
+        {
+            if (mixer == null) return;
+            ApplyVolume("MasterVol", PlayerPrefs.GetFloat("opt.vol.master", 0.8f));
+            ApplyVolume("MusicVol", PlayerPrefs.GetFloat("opt.vol.music", 0.8f));
+            ApplyVolume("SFXVol", PlayerPrefs.GetFloat("opt.vol.sfx", 0.8f));
+        }
+
+        void ApplyVolume(string param, float value01)
+        {
+            float dB = Mathf.Log10(Mathf.Clamp(value01, 0.0001f, 1f)) * 20f;
+            mixer.SetFloat(param, dB);
         }
 
         void OnDestroy()

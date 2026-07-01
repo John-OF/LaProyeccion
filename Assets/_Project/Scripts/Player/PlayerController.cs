@@ -30,6 +30,10 @@ namespace LaProyeccion.Player
         [SerializeField] private float groundCheckRadius = 0.15f;
         [SerializeField] private LayerMask groundLayer;
 
+        [Header("Caída")]
+        [Tooltip("Si el jugador cae por debajo de esta altura, reaparece en el último punto seguro.")]
+        [SerializeField] private float fallLimit = -50f;
+
         private Rigidbody2D rb;
         private PlayerInputActions input;
         private Vector2 moveInput;
@@ -48,6 +52,9 @@ namespace LaProyeccion.Player
 
         private void OnEnable()
         {
+            // Guard: en recompilaciones durante Play, Unity puede llamar OnEnable
+            // antes de que Awake haya recreado 'input' (queda null tras el domain reload).
+            if (input == null) return;
             input.Player.Enable();
             input.Player.Jump.performed += OnJumpPressed;
             input.Player.SwitchWorld.performed += OnSwitchPressed;
@@ -55,6 +62,7 @@ namespace LaProyeccion.Player
 
         private void OnDisable()
         {
+            if (input == null) return;
             input.Player.Jump.performed -= OnJumpPressed;
             input.Player.SwitchWorld.performed -= OnSwitchPressed;
             input.Player.Disable();
@@ -91,12 +99,19 @@ namespace LaProyeccion.Player
             }
 
 
-            //Posiblemente se deba quitar luego.
-            // Anti-stuck: si la cámara nos pierde mucho debajo del nivel, reset de seguridad.
-            if (transform.position.y < -50f)
+            // Si caemos fuera del nivel, reaparecemos en el último punto seguro
+            // (autoguardado tras puzzle / checkpoint), no al inicio.
+            if (transform.position.y < fallLimit)
             {
-                transform.position = new Vector3(0f, 5f, 0f);
-                rb.linearVelocity = Vector2.zero;
+                if (GameSession.Instance != null)
+                {
+                    GameSession.Instance.RespawnPlayer();
+                }
+                else
+                {
+                    transform.position = new Vector3(0f, 5f, 0f);
+                    rb.linearVelocity = Vector2.zero;
+                }
             }
         }
 

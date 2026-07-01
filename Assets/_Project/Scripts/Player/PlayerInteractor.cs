@@ -23,12 +23,14 @@ namespace LaProyeccion.Player
 
         private void OnEnable()
         {
+            if (input == null) return;
             input.Player.Enable();
             input.Player.Interact.performed += OnInteract;
         }
 
         private void OnDisable()
         {
+            if (input == null) return;
             input.Player.Interact.performed -= OnInteract;
             input.Player.Disable();
         }

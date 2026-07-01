@@ -110,3 +110,6 @@ InitTestScene*.unity*
 
 # Compiled player build (not versioned for now)
 /Ejecutable/
+
+# Private working docs (GDD, bitácora, bugs, pendientes, ideas)
+/_docs/

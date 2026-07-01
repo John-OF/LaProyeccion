@@ -107,6 +107,15 @@ namespace LaProyeccion.Core
             OnSwitchUnlocked?.Invoke();
         }
 
+        /// <summary>
+        /// Restaura el estado del switch desde un guardado, SIN disparar
+        /// OnSwitchUnlocked (para no repetir el primer mensaje de Keplin al continuar).
+        /// </summary>
+        public void RestoreSwitchEnabled(bool enabled)
+        {
+            switchEnabled = enabled;
+        }
+
         public void DisableSwitch()
         {
             switchEnabled = false;

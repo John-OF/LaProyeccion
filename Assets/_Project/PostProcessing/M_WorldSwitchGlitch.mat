@@ -59,8 +59,8 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerScreenPos: {r: 0.5397637, g: 0.31435686, b: 0, a: 0}
+    - _PlayerScreenPos: {r: 0.54259825, g: 0.30829763, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 0.4, g: 0.9, b: 1, a: 1}
+    - _TintColor: {r: 0.6, g: 0.6, b: 0.8, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

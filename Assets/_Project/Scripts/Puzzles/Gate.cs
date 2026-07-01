@@ -26,6 +26,7 @@ namespace LaProyeccion.Puzzles
         public UnityEvent OnClosed;
 
         bool isOpen = false;
+        bool started = false;
 
         void Start()
         {
@@ -36,6 +37,7 @@ namespace LaProyeccion.Puzzles
                 s.OnStateChanged.AddListener(_ => Evaluate());
             }
             Evaluate();
+            started = true; // a partir de aquí, abrir la puerta cuenta como "puzzle resuelto"
         }
 
         void Evaluate()
@@ -56,6 +58,12 @@ namespace LaProyeccion.Puzzles
             if (blockingCollider != null) blockingCollider.enabled = false;
             if (body != null) body.enabled = false;
             OnOpened?.Invoke();
+
+            // Autoguardado: abrir la puerta significa que el puzzle quedó resuelto.
+            // No guardamos en la evaluación inicial del Start (estado ya-abierto por diseño)
+            // ni mientras se restaura un guardado (evita autoguardados en cadena).
+            if (started && !LaProyeccion.Core.GameSession.IsRestoring)
+                LaProyeccion.Core.GameSession.AutoSave();
         }
 
         public void Close()
