@@ -81,6 +81,7 @@ namespace LaProyeccion.Player
                 jumpBufferCounter = 0f;
                 coyoteCounter = 0f;
                 hasJumpedThisAirtime = true;
+                AudioManager.Instance?.PlayJump();
             }
 
             // Reset de la flag: solo cuando tocamos suelo Y no estamos subiendo

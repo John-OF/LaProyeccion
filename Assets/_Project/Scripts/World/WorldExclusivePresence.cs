@@ -1,0 +1,51 @@
+using UnityEngine;
+using LaProyeccion.Core;
+
+namespace LaProyeccion.World
+{
+    /// <summary>
+    /// Hace que un GameObject (con sus colliders y renderers) exista solo
+    /// en uno de los dos mundos. A diferencia de TilemapDualLayer (que es
+    /// para tilemaps enteros), esto es para entidades sueltas:
+    /// switches, props, NPCs Real-only, etc.
+    ///
+    /// Afecta a TODOS los Collider2D y Renderer del GameObject y sus hijos.
+    /// </summary>
+    [DisallowMultipleComponent]
+    public class WorldExclusivePresence : MonoBehaviour
+    {
+        [Header("World")]
+        [SerializeField] private WorldState belongsTo = WorldState.Real;
+
+        Collider2D[] colliders;
+        Renderer[] renderers;
+
+        void Awake()
+        {
+            colliders = GetComponentsInChildren<Collider2D>(includeInactive: true);
+            renderers = GetComponentsInChildren<Renderer>(includeInactive: true);
+        }
+
+        void OnEnable()
+        {
+            WorldManager.OnWorldChanged += HandleWorldChanged;
+            ApplyState();
+        }
+
+        void OnDisable()
+        {
+            WorldManager.OnWorldChanged -= HandleWorldChanged;
+        }
+
+        void HandleWorldChanged(WorldState s) => ApplyState();
+
+        void ApplyState()
+        {
+            if (WorldManager.Instance == null) return;
+            bool present = WorldManager.Instance.CurrentWorld == belongsTo;
+
+            foreach (var c in colliders) if (c != null) c.enabled = present;
+            foreach (var r in renderers) if (r != null) r.enabled = present;
+        }
+    }
+}

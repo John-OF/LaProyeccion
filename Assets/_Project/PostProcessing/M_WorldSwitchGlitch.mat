@@ -53,14 +53,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AspectRatio: 1.4737692
+    - _AspectRatio: 2.0395033
     - _EnableExternalAlpha: 0
     - _Progress: 0
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerScreenPos: {r: 0.51275253, g: 0.47304177, b: 0, a: 0}
+    - _PlayerScreenPos: {r: 0.5397637, g: 0.31435686, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 0.6, g: 0.6, b: 0.8, a: 1}
+    - _TintColor: {r: 0.4, g: 0.9, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

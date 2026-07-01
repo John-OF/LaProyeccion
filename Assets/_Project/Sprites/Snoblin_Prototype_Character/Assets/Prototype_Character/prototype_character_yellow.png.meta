@@ -1,0 +1,975 @@
+fileFormatVersion: 2
+guid: 7d15e88732354674da9ac5435bb2a5d4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1493150767677601403
+    second: prototype_character_yellow_0
+  - first:
+      213: 3656091684093040551
+    second: prototype_character_yellow_1
+  - first:
+      213: -365831867864711536
+    second: prototype_character_yellow_2
+  - first:
+      213: -1628563182634640909
+    second: prototype_character_yellow_3
+  - first:
+      213: -1222309528843399052
+    second: prototype_character_yellow_4
+  - first:
+      213: 1835217970800577491
+    second: prototype_character_yellow_5
+  - first:
+      213: -2710298573940799930
+    second: prototype_character_yellow_6
+  - first:
+      213: 836274262240560902
+    second: prototype_character_yellow_7
+  - first:
+      213: -3006356365842419947
+    second: prototype_character_yellow_8
+  - first:
+      213: 2374618825349728042
+    second: prototype_character_yellow_9
+  - first:
+      213: 4524517554452477962
+    second: prototype_character_yellow_10
+  - first:
+      213: -7793866937672145907
+    second: prototype_character_yellow_11
+  - first:
+      213: -4227778530840096313
+    second: prototype_character_yellow_12
+  - first:
+      213: 2696106127871258811
+    second: prototype_character_yellow_13
+  - first:
+      213: -9015278565595958794
+    second: prototype_character_yellow_14
+  - first:
+      213: -2689962058254150687
+    second: prototype_character_yellow_15
+  - first:
+      213: -1365286340867709247
+    second: prototype_character_yellow_16
+  - first:
+      213: -7798158401604125100
+    second: prototype_character_yellow_17
+  - first:
+      213: -4433228386725462963
+    second: prototype_character_yellow_18
+  - first:
+      213: 2197162279190153352
+    second: prototype_character_yellow_19
+  - first:
+      213: 4203491052231837817
+    second: prototype_character_yellow_20
+  - first:
+      213: -6005536176483313163
+    second: prototype_character_yellow_21
+  - first:
+      213: 1558378582918327858
+    second: prototype_character_yellow_22
+  - first:
+      213: -8658194696925291782
+    second: prototype_character_yellow_23
+  - first:
+      213: -4224485699464767094
+    second: prototype_character_yellow_24
+  - first:
+      213: 110458866629917710
+    second: prototype_character_yellow_25
+  - first:
+      213: 1522323817787103815
+    second: prototype_character_yellow_26
+  - first:
+      213: 7435165397357430170
+    second: prototype_character_yellow_27
+  - first:
+      213: 1510679049814824729
+    second: prototype_character_yellow_28
+  - first:
+      213: -8390211628345914007
+    second: prototype_character_yellow_29
+  - first:
+      213: 6221075252093817022
+    second: prototype_character_yellow_30
+  - first:
+      213: 4328163633593249203
+    second: prototype_character_yellow_31
+  - first:
+      213: -518728520199467032
+    second: prototype_character_yellow_32
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: prototype_character_yellow_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 360
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5898970b943474be0800000000000000
+      internalID: -1493150767677601403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 360
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a710a0140c0db230800000000000000
+      internalID: 3656091684093040551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_2
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 328
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09ef76cbadd4ceaf0800000000000000
+      internalID: -365831867864711536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_3
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 328
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f958c4f96e2669e0800000000000000
+      internalID: -1628563182634640909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_4
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 296
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470d6b7a5fb790fe0800000000000000
+      internalID: -1222309528843399052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 296
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db4bf26501087910800000000000000
+      internalID: 1835217970800577491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_6
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 264
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 646c2098ec5136ad0800000000000000
+      internalID: -2710298573940799930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_7
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 264
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60786afb20b0b9b00800000000000000
+      internalID: 836274262240560902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_8
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 264
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f6ab940d64746d0800000000000000
+      internalID: -3006356365842419947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_9
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 264
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a270de98d3754f020800000000000000
+      internalID: 2374618825349728042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 232
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a08b82d6eb05ace30800000000000000
+      internalID: 4524517554452477962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_11
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 232
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d04e369505f96d390800000000000000
+      internalID: -7793866937672145907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_12
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 232
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c1d04073d9e355c0800000000000000
+      internalID: -4227778530840096313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_13
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 232
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb0358c1d3e7a6520800000000000000
+      internalID: 2696106127871258811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_14
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 200
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f1b57ad8eb43e280800000000000000
+      internalID: -9015278565595958794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_15
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 200
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e39b7292c55baad0800000000000000
+      internalID: -2689962058254150687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_16
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 200
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c623eb7e478d0de0800000000000000
+      internalID: -1365286340867709247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_17
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 200
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45e782a004067c390800000000000000
+      internalID: -7798158401604125100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_18
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 168
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4cfc0145420a72c0800000000000000
+      internalID: -4433228386725462963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_19
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 168
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888440da373ed7e10800000000000000
+      internalID: 2197162279190153352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_20
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 136
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 978cfc847dcc55a30800000000000000
+      internalID: 4203491052231837817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_21
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 136
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f954fa8aac08aca0800000000000000
+      internalID: -6005536176483313163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_22
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 104
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e6c64801970a510800000000000000
+      internalID: 1558378582918327858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_23
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 104
+        width: 14
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afad895dbc9e7d780800000000000000
+      internalID: -8658194696925291782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_24
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 72
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a895fac73ac9f55c0800000000000000
+      internalID: -4224485699464767094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_25
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 72
+        width: 16
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0cb4c301cd688100800000000000000
+      internalID: 110458866629917710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_26
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 72
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74a11585271602510800000000000000
+      internalID: 1522323817787103815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_27
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 40
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9504c329830f2760800000000000000
+      internalID: 7435165397357430170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_28
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 40
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91756d5879207f410800000000000000
+      internalID: 1510679049814824729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_29
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 40
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96d071e2afaff8b80800000000000000
+      internalID: -8390211628345914007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_30
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 8
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb0960a2bf2b55650800000000000000
+      internalID: 6221075252093817022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_31
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 8
+        width: 17
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bde616a4e9b01c30800000000000000
+      internalID: 4328163633593249203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: prototype_character_yellow_32
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 8
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ef85a2c82b1dc8f0800000000000000
+      internalID: -518728520199467032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      prototype_character_yellow_0: -1493150767677601403
+      prototype_character_yellow_1: 3656091684093040551
+      prototype_character_yellow_10: 4524517554452477962
+      prototype_character_yellow_11: -7793866937672145907
+      prototype_character_yellow_12: -4227778530840096313
+      prototype_character_yellow_13: 2696106127871258811
+      prototype_character_yellow_14: -9015278565595958794
+      prototype_character_yellow_15: -2689962058254150687
+      prototype_character_yellow_16: -1365286340867709247
+      prototype_character_yellow_17: -7798158401604125100
+      prototype_character_yellow_18: -4433228386725462963
+      prototype_character_yellow_19: 2197162279190153352
+      prototype_character_yellow_2: -365831867864711536
+      prototype_character_yellow_20: 4203491052231837817
+      prototype_character_yellow_21: -6005536176483313163
+      prototype_character_yellow_22: 1558378582918327858
+      prototype_character_yellow_23: -8658194696925291782
+      prototype_character_yellow_24: -4224485699464767094
+      prototype_character_yellow_25: 110458866629917710
+      prototype_character_yellow_26: 1522323817787103815
+      prototype_character_yellow_27: 7435165397357430170
+      prototype_character_yellow_28: 1510679049814824729
+      prototype_character_yellow_29: -8390211628345914007
+      prototype_character_yellow_3: -1628563182634640909
+      prototype_character_yellow_30: 6221075252093817022
+      prototype_character_yellow_31: 4328163633593249203
+      prototype_character_yellow_32: -518728520199467032
+      prototype_character_yellow_4: -1222309528843399052
+      prototype_character_yellow_5: 1835217970800577491
+      prototype_character_yellow_6: -2710298573940799930
+      prototype_character_yellow_7: 836274262240560902
+      prototype_character_yellow_8: -3006356365842419947
+      prototype_character_yellow_9: 2374618825349728042
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

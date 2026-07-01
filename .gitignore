@@ -104,3 +104,9 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Claude Code guidance file (local only, not shared in repo)
+/CLAUDE.md
+
+# Compiled player build (not versioned for now)
+/Ejecutable/

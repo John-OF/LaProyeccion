@@ -1,3 +1,4 @@
+using LaProyeccion.Core;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,9 @@ namespace LaProyeccion.Narrative
 
         public void ShowMessage(string text)
         {
+            // Reproducir sonido de mensaje de Keplin
+            AudioManager.Instance?.PlayKeplinMessage();
+
             if (messageText == null) { Debug.LogWarning("[Keplin] Sin TMP_Text asignado."); return; }
 
             if (activeMessage != null) StopCoroutine(activeMessage);

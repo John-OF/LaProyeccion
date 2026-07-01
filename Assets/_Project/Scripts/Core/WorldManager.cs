@@ -81,6 +81,7 @@ namespace LaProyeccion.Core
                 : WorldState.Simulation;
 
             lastSwitchTime = Time.time;
+            AudioManager.Instance?.PlayWorldSwitch();
             OnWorldChanged?.Invoke(CurrentWorld);
             return true;
         }
