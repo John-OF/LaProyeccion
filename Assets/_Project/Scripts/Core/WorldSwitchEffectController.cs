@@ -25,6 +25,9 @@ namespace LaProyeccion.Core
         private static readonly int PlayerPosID = Shader.PropertyToID("_PlayerScreenPos");
         private static readonly int AspectID = Shader.PropertyToID("_AspectRatio");
         private static readonly int TintID = Shader.PropertyToID("_TintColor");
+        // Semilla por disparo (shader WorldSwitchGlitchBrutal): cada cambio glitchea
+        // distinto. Con guard: el shadergraph anterior no tiene la propiedad.
+        private static readonly int SeedID = Shader.PropertyToID("_Seed");
 
         private Coroutine activeFx;
 
@@ -50,6 +53,8 @@ namespace LaProyeccion.Core
         {
             glitchMaterial.SetColor(TintID,
                 newWorld == WorldState.Simulation ? tintToSimulation : tintToReal);
+            if (glitchMaterial.HasProperty(SeedID))
+                glitchMaterial.SetFloat(SeedID, Random.Range(0f, 1000f));
 
             float t = 0f;
             while (t < duration)

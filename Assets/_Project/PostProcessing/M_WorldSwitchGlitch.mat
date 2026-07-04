@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_WorldSwitchGlitch
-  m_Shader: {fileID: -6465566751694194690, guid: 9117eca96f285a14e82d1f1f7133db60, type: 3}
+  m_Shader: {fileID: 4800000, guid: 78f90fb59b1f9154c89451293e3d1421, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -54,12 +54,29 @@ Material:
     m_Ints: []
     m_Floats:
     - _AspectRatio: 2.0395033
+    - _ChromaticPx: 4
     - _EnableExternalAlpha: 0
+    - _FrontEdgePx: 14
+    - _FrontTailPx: 70
+    - _PatternRerolls: 8
+    - _PixelScale: 1
     - _Progress: 0
+    - _RefractionPx: 10
+    - _ResidueGain: 0.3
+    - _RimGain: 0.4
+    - _RingSectors: 28
+    - _Seed: 0
+    - _SliceJitterPx: 10
+    - _SliceRowPx: 3
+    - _SparkCellPx: 6
+    - _SparkGain: 1.1
+    - _SparkThreshold: 0.9
+    - _StaticNoise: 0.3
+    - _TintMix: 0.22
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PlayerScreenPos: {r: 0.54259825, g: 0.30829763, b: 0, a: 0}
+    - _PlayerScreenPos: {r: 0.5002792, g: 0.5, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _TintColor: {r: 0.6, g: 0.6, b: 0.8, a: 1}
   m_BuildTextureStacks: []
