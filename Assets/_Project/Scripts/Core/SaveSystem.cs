@@ -16,12 +16,21 @@ namespace LaProyeccion.Core
         const string KeySpawnY = "save.spawnY";
         const string KeyWorldUnlocked = "save.worldUnlocked";
         const string KeySwitches = "save.switches";
+        const string KeySeeds = "save.seeds";
+        const string KeySeedsCollected = "save.seedsCollected";
 
         /// <summary>
         /// No se persiste: indica que el jugador entró por "Continuar" y que la escena
         /// de juego debe reposicionarlo en el punto guardado (lo consume GameSession).
         /// </summary>
         public static bool ContinueRequested { get; set; }
+
+        /// <summary>
+        /// No se persiste: indica que se acaba de empezar una partida nueva y que el
+        /// estado de sesión (semillas recogidas, inventario) debe limpiarse
+        /// (lo consume GameSession).
+        /// </summary>
+        public static bool NewGameRequested { get; set; }
 
         /// <summary>True si hay una partida guardada que se pueda continuar.</summary>
         public static bool HasSave() => PlayerPrefs.GetInt(KeyExists, 0) == 1;
@@ -35,6 +44,7 @@ namespace LaProyeccion.Core
             Clear();
             PlayerPrefs.SetString(KeyScene, sceneName);
             PlayerPrefs.Save();
+            NewGameRequested = true;
         }
 
         /// <summary>Escena a cargar al continuar. Fallback al nombre dado si no hay guardado.</summary>
@@ -78,6 +88,29 @@ namespace LaProyeccion.Core
 
         public static string GetSwitchStates() => PlayerPrefs.GetString(KeySwitches, "");
 
+        // ==================== Semillas (F1.P4) ====================
+
+        /// <summary>Guarda cuántas Semillas lleva el jugador en el inventario.</summary>
+        public static void SetSeeds(int count)
+        {
+            PlayerPrefs.SetInt(KeySeeds, Mathf.Max(0, count));
+            PlayerPrefs.Save();
+        }
+
+        public static int GetSeeds() => PlayerPrefs.GetInt(KeySeeds, 0);
+
+        /// <summary>
+        /// Guarda los ids de semillas ya recogidas, serializados como
+        /// "escena:id;escena:id2;..." (los recogidos no reaparecen).
+        /// </summary>
+        public static void SetSeedsCollected(string serialized)
+        {
+            PlayerPrefs.SetString(KeySeedsCollected, serialized ?? "");
+            PlayerPrefs.Save();
+        }
+
+        public static string GetSeedsCollected() => PlayerPrefs.GetString(KeySeedsCollected, "");
+
         // ==================== Utilidad ====================
 
         /// <summary>Borra la partida guardada por completo.</summary>
@@ -89,6 +122,8 @@ namespace LaProyeccion.Core
             PlayerPrefs.DeleteKey(KeySpawnY);
             PlayerPrefs.DeleteKey(KeyWorldUnlocked);
             PlayerPrefs.DeleteKey(KeySwitches);
+            PlayerPrefs.DeleteKey(KeySeeds);
+            PlayerPrefs.DeleteKey(KeySeedsCollected);
             PlayerPrefs.Save();
         }
     }

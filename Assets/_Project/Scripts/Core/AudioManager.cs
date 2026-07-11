@@ -38,6 +38,8 @@ namespace LaProyeccion.Core
         [SerializeField] private AudioClip sfxDoorOpen;
         [SerializeField] private AudioClip sfxSwitchActivate;
         [SerializeField] private AudioClip sfxKeplinMessage;
+        [Tooltip("Recoger Semilla. Si está vacío, usa sfxSwitchActivate con el pitch de abajo (provisional F1.P4; clip real en F6.P2).")]
+        [SerializeField] private AudioClip sfxSeedPickup;
 
         [Header("Volumes (per-clip multiplier, 0..1)")]
         [Range(0f, 1f)][SerializeField] private float jumpVolume = 0.6f;
@@ -45,13 +47,19 @@ namespace LaProyeccion.Core
         [Range(0f, 1f)][SerializeField] private float doorOpenVolume = 0.9f;
         [Range(0f, 1f)][SerializeField] private float switchActivateVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float keplinMessageVolume = 0.7f;
+        [Range(0f, 1f)][SerializeField] private float seedPickupVolume = 0.7f;
         [Range(0f, 1f)][SerializeField] private float musicVolume = 0.6f;
+
+        [Tooltip("Pitch del SFX de semilla (≈1.4 mientras el clip provisional sea el del switch).")]
+        [SerializeField, Range(0.5f, 2f)] private float seedPickupPitch = 1.4f;
 
         // AudioSources creados en runtime
         AudioSource musicSimSource;
         AudioSource musicRealSource;
         AudioSource sfxSource;       // UI / narrativa
         AudioSource sfxWorldSource;  // mundo (jump, door, switch)
+        AudioSource sfxPitchedSource; // one-shots con pitch alterado (semilla); fuente
+                                      // propia para no desafinar los one-shots normales
 
         void Awake()
         {
@@ -70,6 +78,7 @@ namespace LaProyeccion.Core
             // SFX sources: one-shots, no loop.
             sfxSource = CreateSource("SFX_Source", sfxGroup, null, loop: false, volume: 1f, autoPlay: false);
             sfxWorldSource = CreateSource("SFX_World_Source", sfxGroup, null, loop: false, volume: 1f, autoPlay: false);
+            sfxPitchedSource = CreateSource("SFX_Pitched_Source", sfxGroup, null, loop: false, volume: 1f, autoPlay: false);
 
             ApplySavedVolumes();
         }
@@ -121,5 +130,15 @@ namespace LaProyeccion.Core
         public void PlayDoorOpen() => sfxWorldSource.PlayOneShot(sfxDoorOpen, doorOpenVolume);
         public void PlaySwitchActivate() => sfxWorldSource.PlayOneShot(sfxSwitchActivate, switchActivateVolume);
         public void PlayKeplinMessage() => sfxSource.PlayOneShot(sfxKeplinMessage, keplinMessageVolume);
+
+        /// <summary>Recoger Semilla (F1.P4). Provisional: clip del switch a pitch ≈1.4.</summary>
+        public void PlaySeedPickup()
+        {
+            var clip = sfxSeedPickup != null ? sfxSeedPickup : sfxSwitchActivate;
+            if (clip == null) return;
+            // Con clip propio (F6.P2) el pitch vuelve a 1; mientras, agudiza el provisional.
+            sfxPitchedSource.pitch = sfxSeedPickup != null ? 1f : seedPickupPitch;
+            sfxPitchedSource.PlayOneShot(clip, seedPickupVolume);
+        }
     }
 }

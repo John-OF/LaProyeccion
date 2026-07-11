@@ -19,11 +19,16 @@ namespace LaProyeccion.World
 
         Collider2D[] colliders;
         Renderer[] renderers;
+        // Extensión retrocompatible (F1.P4): las Light2D también se apagan en el
+        // mundo donde el objeto no existe (una semilla solo-Real no debe brillar
+        // en la Simulación). Light2D no es Renderer, por eso va aparte.
+        UnityEngine.Rendering.Universal.Light2D[] lights;
 
         void Awake()
         {
             colliders = GetComponentsInChildren<Collider2D>(includeInactive: true);
             renderers = GetComponentsInChildren<Renderer>(includeInactive: true);
+            lights = GetComponentsInChildren<UnityEngine.Rendering.Universal.Light2D>(includeInactive: true);
         }
 
         void OnEnable()
@@ -46,6 +51,7 @@ namespace LaProyeccion.World
 
             foreach (var c in colliders) if (c != null) c.enabled = present;
             foreach (var r in renderers) if (r != null) r.enabled = present;
+            foreach (var l in lights) if (l != null) l.enabled = present;
         }
     }
 }

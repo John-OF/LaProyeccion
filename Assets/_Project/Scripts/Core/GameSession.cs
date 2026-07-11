@@ -52,6 +52,15 @@ namespace LaProyeccion.Core
 
         private void Start()
         {
+            // Partida nueva: limpiar el estado de sesión (semillas recogidas e inventario)
+            // que sobrevive a los LoadScene dentro de la misma sesión de juego.
+            if (SaveSystem.NewGameRequested)
+            {
+                SaveSystem.NewGameRequested = false;
+                SeedPickup.ClearSessionState();
+                SeedInventory.ResetSession();
+            }
+
             // Al continuar: reposicionar en el punto guardado y restaurar el estado del mundo.
             if (SaveSystem.ContinueRequested && SaveSystem.HasSave() && player != null)
             {
@@ -85,6 +94,8 @@ namespace LaProyeccion.Core
             SaveSystem.SaveProgress(SceneManager.GetActiveScene().name, player.position);
             SaveSystem.SetWorldUnlocked(WorldManager.Instance != null && WorldManager.Instance.IsSwitchEnabled);
             SaveSystem.SetSwitchStates(SerializeSwitches());
+            SaveSystem.SetSeeds(SeedInventory.SessionCount);
+            SaveSystem.SetSeedsCollected(SeedPickup.SerializeCollected());
         }
 
         /// <summary>Autoguardado conveniente para llamar desde cualquier sistema (p. ej. Gate).</summary>
@@ -113,6 +124,10 @@ namespace LaProyeccion.Core
                 WorldManager.Instance.RestoreSwitchEnabled(true);
 
             ApplySwitchStates(SaveSystem.GetSwitchStates());
+
+            // Semillas: inventario y pickups ya recogidos (F1.P4).
+            SeedInventory.RestoreSession(SaveSystem.GetSeeds());
+            SeedPickup.LoadCollected(SaveSystem.GetSeedsCollected());
 
             IsRestoring = false;
         }
