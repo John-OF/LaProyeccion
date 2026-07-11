@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using LaProyeccion.Core;
@@ -37,8 +38,12 @@ namespace LaProyeccion.UI
         [Tooltip("Escena a la que entra 'Nueva partida'.")]
         [SerializeField] private string gameSceneName = "SampleScene";
 
+        private PlayerInputActions input;
+
         private void Awake()
         {
+            input = new PlayerInputActions();
+
             Wire(buttonPlay, ShowPlay);
             Wire(buttonOptions, ShowOptions);
             Wire(buttonQuit, OnQuit);
@@ -56,6 +61,33 @@ namespace LaProyeccion.UI
             // 'Continuar' solo disponible si hay partida guardada.
             if (buttonContinue != null)
                 buttonContinue.interactable = SaveSystem.HasSave();
+        }
+
+        private void OnEnable()
+        {
+            // Guard: en recompilaciones durante Play, OnEnable puede llegar antes
+            // de que Awake recree 'input' (null tras el domain reload).
+            if (input == null) return;
+            input.Player.Cancel.performed += OnCancelPressed;
+            input.Player.Cancel.Enable();
+        }
+
+        private void OnDisable()
+        {
+            if (input == null) return;
+            input.Player.Cancel.performed -= OnCancelPressed;
+            input.Player.Cancel.Disable();
+        }
+
+        /// <summary>
+        /// B (Xbox) / Círculo (PS) = atrás: desde Jugar u Opciones vuelve al
+        /// panel principal. En el panel principal no hace nada (evita salir
+        /// del juego por accidente).
+        /// </summary>
+        private void OnCancelPressed(InputAction.CallbackContext _)
+        {
+            if (panelPlay != null && panelPlay.activeSelf) { ShowMain(); return; }
+            if (panelOptions != null && panelOptions.activeSelf) ShowMain();
         }
 
         private static void Wire(Button b, UnityEngine.Events.UnityAction action)
