@@ -78,7 +78,15 @@ namespace LaProyeccion.Core
         private void OnApplicationQuit()
         {
             // Reset por si se queda con valor activado al cerrar Play.
-            if (glitchMaterial != null) glitchMaterial.SetFloat(ProgressID, 0f);
+            // Valores DETERMINISTAS en todas las propiedades que animamos: lo que
+            // quede escrito distinto persiste en el .mat compartido y ensucia git
+            // tras cada sesión de Play (bug visto el 2026-07-11 con _Seed).
+            if (glitchMaterial == null) return;
+            glitchMaterial.SetFloat(ProgressID, 0f);
+            glitchMaterial.SetVector(PlayerPosID, new Vector4(0.5f, 0.5f, 0f, 0f));
+            glitchMaterial.SetFloat(AspectID, 16f / 9f);
+            if (glitchMaterial.HasProperty(SeedID))
+                glitchMaterial.SetFloat(SeedID, 0f);
         }
     }
 }
