@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6732570173398560412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1778593858105995324}
+  - component: {fileID: 7096252501515967888}
+  - component: {fileID: 1998267686301228548}
+  m_Layer: 0
+  m_Name: PF_AudioKit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1778593858105995324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732570173398560412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 75.11414, y: 10.49315, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7096252501515967888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732570173398560412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 514deeda459325c4db2ed4b41f69fff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Core.AudioManager
+  mixer: {fileID: 24100000, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  musicSimGroup: {fileID: -6408403606744297493, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  musicRealGroup: {fileID: -7233686924617112894, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  sfxGroup: {fileID: -3946740955898096758, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  musicSimulation: {fileID: 8300000, guid: 8f4be22792707bb468abbbf52552759b, type: 3}
+  musicReal: {fileID: 8300000, guid: 301937417e614f242a428b03b0bbf386, type: 3}
+  sfxJump: {fileID: 8300000, guid: 13b0bdc3dbe12464fac7f44c8f894ff3, type: 3}
+  sfxWorldSwitch: {fileID: 8300000, guid: dacb1cea1c4d27449b434381395bdec8, type: 3}
+  sfxDoorOpen: {fileID: 8300000, guid: e308d54fa1453c54c841db8b75345b13, type: 3}
+  sfxSwitchActivate: {fileID: 8300000, guid: 4662cc2ca5710cd45a81546d69f8ea88, type: 3}
+  sfxKeplinMessage: {fileID: 8300000, guid: ae37732004377ba4b854a59dc8137b9f, type: 3}
+  jumpVolume: 0.6
+  worldSwitchVolume: 0.8
+  doorOpenVolume: 0.9
+  switchActivateVolume: 0.8
+  keplinMessageVolume: 0.7
+  musicVolume: 0.6
+--- !u!114 &1998267686301228548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6732570173398560412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b7d2b456db03bb4a879d34d433cab09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Core.WorldMusicController
+  mixer: {fileID: 24100000, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  snapshotSimulation: {fileID: 24500006, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  snapshotReal: {fileID: -7659921076833606011, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  duration: 0.4
