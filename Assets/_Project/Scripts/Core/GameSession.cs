@@ -30,6 +30,13 @@ namespace LaProyeccion.Core
         /// <summary>Último punto seguro de reaparición dentro de la partida.</summary>
         public Vector3 CurrentRespawn { get; private set; }
 
+        /// <summary>
+        /// True si esta escena arrancó restaurando un guardado ("Continuar").
+        /// Lo consultan sistemas que deben comportarse distinto en la primera
+        /// entrada a una zona (p. ej. ZoneEntry no pisa el guardado restaurado).
+        /// </summary>
+        public bool RestoredFromContinue { get; private set; }
+
         private Rigidbody2D playerBody;
 
         private void Awake()
@@ -51,6 +58,7 @@ namespace LaProyeccion.Core
                 Vector2 spawn = SaveSystem.GetSpawn();
                 player.position = new Vector3(spawn.x, spawn.y, player.position.z);
                 RestoreWorldState();
+                RestoredFromContinue = true;
             }
             SaveSystem.ContinueRequested = false;
 
