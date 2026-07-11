@@ -106,12 +106,19 @@ namespace LaProyeccion.Core
 
         // ==================== Respawn en sesión ====================
 
+        /// <summary>
+        /// Disparado tras cada respawn del jugador (extensión F1.P5, retrocompatible).
+        /// Lo usan sistemas que deben cancelarse al morir (p. ej. el pulso del radar).
+        /// </summary>
+        public static event System.Action OnPlayerRespawned;
+
         /// <summary>Reaparece al jugador en el último punto seguro y frena su velocidad.</summary>
         public void RespawnPlayer()
         {
             if (player == null) return;
             player.position = CurrentRespawn;
             if (playerBody != null) playerBody.linearVelocity = Vector2.zero;
+            OnPlayerRespawned?.Invoke();
         }
 
         // ==================== Estado del mundo ====================

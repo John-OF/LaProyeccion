@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 2357891334382262778}
   - component: {fileID: 8270811607323671277}
   - component: {fileID: 5652331858621224946}
+  - component: {fileID: 8443642919589800826}
   m_Layer: 0
   m_Name: PF_Player
   m_TagString: Untagged
@@ -315,6 +316,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Core.SeedInventory
   capacity: 1
+--- !u!114 &8443642919589800826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811386461826851986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfd99a2be7ec184f84c969b07831c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Core.RadarPulseController
+  ghostSimMaterial: {fileID: 2100000, guid: 3a30ce33ccae21a4bb71e7b2b4a7e13c, type: 2}
+  ghostRealMaterial: {fileID: 2100000, guid: 0e023a3a685671a48b7d1260e52dcd7f, type: 2}
+  revealDuration: 4
+  fadeTime: 0.25
+  ringSprite: {fileID: 21300000, guid: c1bd92269bc4b2a42bfe4a48f9fe4be2, type: 3}
+  ringMaxRadius: 12
+  ringDuration: 1.5
+  ringColorSim: {r: 0.35, g: 0.95, b: 1, a: 0.9}
+  ringColorReal: {r: 0.95, g: 0.4, b: 0.22, a: 0.9}
+  fizzleColor: {r: 0.65, g: 0.65, b: 0.65, a: 0.5}
+  fizzleStartRadius: 0.3
+  fizzleEndRadius: 1
+  fizzleDuration: 0.18
 --- !u!1 &8441448398085314432
 GameObject:
   m_ObjectHideFlags: 0

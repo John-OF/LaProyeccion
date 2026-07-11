@@ -40,6 +40,8 @@ namespace LaProyeccion.Core
         [SerializeField] private AudioClip sfxKeplinMessage;
         [Tooltip("Recoger Semilla. Si está vacío, usa sfxSwitchActivate con el pitch de abajo (provisional F1.P4; clip real en F6.P2).")]
         [SerializeField] private AudioClip sfxSeedPickup;
+        [Tooltip("Pulso del radar. Si está vacío, usa sfxWorldSwitch a pitch 0.6 (provisional F1.P5; clip real en F6.P2 — debe sentirse 'caro', GDD §8).")]
+        [SerializeField] private AudioClip sfxRadarPulse;
 
         [Header("Volumes (per-clip multiplier, 0..1)")]
         [Range(0f, 1f)][SerializeField] private float jumpVolume = 0.6f;
@@ -48,10 +50,13 @@ namespace LaProyeccion.Core
         [Range(0f, 1f)][SerializeField] private float switchActivateVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float keplinMessageVolume = 0.7f;
         [Range(0f, 1f)][SerializeField] private float seedPickupVolume = 0.7f;
+        [Range(0f, 1f)][SerializeField] private float radarPulseVolume = 0.9f;
         [Range(0f, 1f)][SerializeField] private float musicVolume = 0.6f;
 
         [Tooltip("Pitch del SFX de semilla (≈1.4 mientras el clip provisional sea el del switch).")]
         [SerializeField, Range(0.5f, 2f)] private float seedPickupPitch = 1.4f;
+        [Tooltip("Pitch del pulso del radar (≈0.6 mientras el clip provisional sea el del cambio de mundo).")]
+        [SerializeField, Range(0.3f, 2f)] private float radarPulsePitch = 0.6f;
 
         // AudioSources creados en runtime
         AudioSource musicSimSource;
@@ -139,6 +144,15 @@ namespace LaProyeccion.Core
             // Con clip propio (F6.P2) el pitch vuelve a 1; mientras, agudiza el provisional.
             sfxPitchedSource.pitch = sfxSeedPickup != null ? 1f : seedPickupPitch;
             sfxPitchedSource.PlayOneShot(clip, seedPickupVolume);
+        }
+
+        /// <summary>Pulso del radar (F1.P5). Debe sentirse "caro". Provisional: cambio de mundo a pitch ≈0.6.</summary>
+        public void PlayRadarPulse()
+        {
+            var clip = sfxRadarPulse != null ? sfxRadarPulse : sfxWorldSwitch;
+            if (clip == null) return;
+            sfxPitchedSource.pitch = sfxRadarPulse != null ? 1f : radarPulsePitch;
+            sfxPitchedSource.PlayOneShot(clip, radarPulseVolume);
         }
     }
 }

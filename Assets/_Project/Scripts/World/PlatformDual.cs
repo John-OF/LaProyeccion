@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using LaProyeccion.Core;
 
@@ -7,6 +8,10 @@ namespace LaProyeccion.World
     /// Componente base de cualquier objeto que cambia de presencia entre mundos.
     /// Activa/desactiva el Renderer y el Collider según el WorldState actual.
     /// No destruye el GameObject: lo mantiene vivo para que pueda volver a aparecer.
+    ///
+    /// Extensión F1.P5 (retrocompatible): <see cref="SetGhostReveal"/> — silueta
+    /// fantasma del pulso del radar cuando el objeto no existe en el mundo actual
+    /// (solo renderers; el color depende del mundo donde SÍ existe).
     /// </summary>
     public class PlatformDual : MonoBehaviour
     {
@@ -47,19 +52,47 @@ namespace LaProyeccion.World
             WorldManager.OnWorldChanged -= HandleWorldChanged;
         }
 
-        private void HandleWorldChanged(WorldState newWorld)
+        private bool ghostReveal;
+        private readonly Dictionary<Renderer, Material[]> ghostStore = new();
+
+        private void HandleWorldChanged(WorldState newWorld) => Apply(newWorld);
+
+        /// <summary>Activa/desactiva la silueta fantasma (la llama RadarPulseController).</summary>
+        public void SetGhostReveal(bool on)
         {
-            bool shouldExist = newWorld == WorldState.Simulation
+            ghostReveal = on;
+            if (WorldManager.Instance != null) Apply(WorldManager.Instance.CurrentWorld);
+        }
+
+        private void Apply(WorldState currentWorld)
+        {
+            bool shouldExist = currentWorld == WorldState.Simulation
                 ? (existsIn & Presence.Simulation) != 0
                 : (existsIn & Presence.Real) != 0;
 
-            SetVisible(shouldExist);
-        }
+            foreach (var c in colliders) if (c != null) c.enabled = shouldExist;
 
-        private void SetVisible(bool visible)
-        {
-            foreach (var r in renderers) r.enabled = visible;
-            foreach (var c in colliders) c.enabled = visible;
+            // Mundo cuya silueta se revela: aquel donde el objeto SÍ existe
+            // (si existe en ambos o en ninguno, no hay nada que revelar).
+            WorldState ghostWorld = currentWorld == WorldState.Simulation
+                ? WorldState.Real : WorldState.Simulation;
+            bool existsInGhostWorld = ghostWorld == WorldState.Simulation
+                ? (existsIn & Presence.Simulation) != 0
+                : (existsIn & Presence.Real) != 0;
+
+            foreach (var r in renderers)
+            {
+                if (r == null) continue;
+                if (ghostReveal && !shouldExist && existsInGhostWorld && GhostReveal.Ready)
+                {
+                    GhostReveal.ApplyGhost(r, ghostWorld, ghostStore);
+                }
+                else
+                {
+                    GhostReveal.Restore(r, ghostStore);
+                    r.enabled = shouldExist;
+                }
+            }
         }
     }
 }
