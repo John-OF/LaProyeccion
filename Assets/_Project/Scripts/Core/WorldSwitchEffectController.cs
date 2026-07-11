@@ -85,6 +85,7 @@ namespace LaProyeccion.Core
             glitchMaterial.SetFloat(ProgressID, 0f);
             glitchMaterial.SetVector(PlayerPosID, new Vector4(0.5f, 0.5f, 0f, 0f));
             glitchMaterial.SetFloat(AspectID, 16f / 9f);
+            glitchMaterial.SetColor(TintID, tintToReal); // también se escribe por disparo
             if (glitchMaterial.HasProperty(SeedID))
                 glitchMaterial.SetFloat(SeedID, 0f);
         }
