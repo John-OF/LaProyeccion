@@ -112,6 +112,13 @@ namespace LaProyeccion.Core
         /// </summary>
         public static event System.Action OnPlayerRespawned;
 
+        /// <summary>
+        /// Actualiza SOLO el punto de respawn en memoria, sin escribir guardado
+        /// (extensión retrocompatible: checkpoints locales/dinámicos y escenas de
+        /// laboratorio en Pruebas/, que no deben pisar save.*).
+        /// </summary>
+        public void SetRespawnPoint(Vector3 position) => CurrentRespawn = position;
+
         /// <summary>Reaparece al jugador en el último punto seguro y frena su velocidad.</summary>
         public void RespawnPlayer()
         {
