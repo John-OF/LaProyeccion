@@ -38,6 +38,15 @@ namespace LaProyeccion.Prototipos
         private bool playerInside;
         private bool avisoDado;
 
+        // Soporte del shader ZonaVigiladaOverlay (si el material del overlay lo usa):
+        // el estado se inyecta por MaterialPropertyBlock (una instancia por zona,
+        // sin duplicar materiales). Fallback: tinte plano de color (comportamiento previo).
+        private static readonly int EstadoID = Shader.PropertyToID("_Estado");
+        private static readonly int ZoneSizeID = Shader.PropertyToID("_ZoneSize");
+        private MaterialPropertyBlock mpb;
+        private bool usaShader;
+        private float estadoActual;
+
         private static readonly Color OjoVigila = new Color(1f, 0.25f, 0.2f, 1f);
         private static readonly Color OjoDescansa = new Color(0.35f, 0.38f, 0.42f, 0.8f);
         private static readonly Color OverlayVigila = new Color(1f, 0.2f, 0.15f, 0.13f);
@@ -60,8 +69,20 @@ namespace LaProyeccion.Prototipos
 
         private void Start()
         {
+            // Shader del overlay disponible?
+            if (overlay != null && overlay.sharedMaterial != null && overlay.sharedMaterial.HasProperty(EstadoID))
+            {
+                usaShader = true;
+                mpb = new MaterialPropertyBlock();
+                overlay.GetPropertyBlock(mpb);
+                var box = GetComponent<BoxCollider2D>();
+                mpb.SetVector(ZoneSizeID, new Vector4(box.size.x, box.size.y, 0f, 0f));
+                overlay.SetPropertyBlock(mpb);
+            }
+
             // Arranca vigilando: el jugador llega, lo ve rojo y lee la regla.
             SetFase(Fase.Vigila);
+            estadoActual = 1f;
         }
 
         private void Update()
@@ -100,7 +121,19 @@ namespace LaProyeccion.Prototipos
                 default: rojo = false; break;
             }
             if (ojo != null) ojo.color = rojo ? OjoVigila : OjoDescansa;
-            if (overlay != null) overlay.color = rojo ? OverlayVigila : OverlayDescansa;
+
+            if (usaShader)
+            {
+                // Transición suavizada hacia el estado objetivo: el preaviso (parpadeo
+                // a ~8 Hz) produce pulsos parciales — se lee como "calentando".
+                estadoActual = Mathf.MoveTowards(estadoActual, rojo ? 1f : 0f, Time.deltaTime * 10f);
+                mpb.SetFloat(EstadoID, estadoActual);
+                overlay.SetPropertyBlock(mpb);
+            }
+            else if (overlay != null)
+            {
+                overlay.color = rojo ? OverlayVigila : OverlayDescansa;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
