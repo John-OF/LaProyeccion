@@ -15,6 +15,13 @@ namespace LaProyeccion.Prototipos
     /// → PREAVISO (parpadeo rápido) → VIGILA...  El jugador resuelve esperando
     /// la ventana o buscando puntos ciegos fuera de la región.
     /// Sondear (Q) NO es anomalía: solo el cambio de mundo.
+    ///
+    /// Variante LETAL (prototipo 2026-07-12): con <see cref="letal"/> activo,
+    /// TOCAR la zona mientras VIGILA mata por contacto (como un guardia) — la
+    /// ventana gris pasa de "momento seguro para cambiar" a paso OBLIGATORIO.
+    /// Preaviso y descanso nunca matan (el telegrafiado es sagrado, Pilar 3).
+    /// El overlay letal debe usar M_ZonaLetal (franjas de peligro incandescentes)
+    /// para que la variante se lea a primera vista.
     /// </summary>
     [RequireComponent(typeof(BoxCollider2D))]
     public class ZonaVigilada : MonoBehaviour
@@ -23,6 +30,10 @@ namespace LaProyeccion.Prototipos
         [SerializeField, Min(0.5f)] private float vigilaTiempo = 3f;
         [SerializeField, Min(0.5f)] private float descansaTiempo = 2.5f;
         [SerializeField, Min(0.1f)] private float preavisoTiempo = 0.7f;
+
+        [Header("Letalidad (prototipo)")]
+        [Tooltip("Si está activo, TOCAR la zona mientras VIGILA mata por contacto. Preaviso y descanso nunca matan. Usar M_ZonaLetal en el overlay.")]
+        [SerializeField] private bool letal = false;
 
         [Header("Visual (hijos; se cablean al construir)")]
         [SerializeField] private SpriteRenderer overlay;
@@ -98,6 +109,10 @@ namespace LaProyeccion.Prototipos
                 }
             }
             ApplyVisual();
+
+            // Variante letal: tocar la luz mientras vigila = muerte por contacto.
+            if (letal && fase == Fase.Vigila && playerInside)
+                GameSession.Instance?.RespawnPlayer();
         }
 
         private void SetFase(Fase f)

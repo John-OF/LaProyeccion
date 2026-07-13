@@ -374,7 +374,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -492,7 +492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 52, y: 4}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &140626581
@@ -724,7 +724,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -842,7 +842,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -9, y: 5}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &242723595
@@ -945,6 +945,7 @@ MonoBehaviour:
   largo: 4.5
   aperturaMediaDeg: 12
   ojoOffset: {x: 0.2, y: 0.35}
+  radioJugador: 0.5
   paredes:
     serializedVersion: 2
     m_Bits: 64
@@ -1108,22 +1109,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 424249933}
     m_ColliderPaths:
-    - - X: -20000000
-        Y: 20000000
-      - X: -50000000
-        Y: 20000000
-      - X: -50000000
-        Y: 10000000
-      - X: -20000000
-        Y: 10000000
-  - m_Collider: {fileID: 424249933}
-    m_ColliderPaths: []
+    - - X: 190000000
+        Y: 0
+      - X: 160000000
+        Y: 0
+      - X: 160000000
+        Y: -10000000
+      - X: 190000000
+        Y: -10000000
   m_CompositePaths:
     m_Paths:
-    - - {x: -2.0000293, y: 1}
-      - {x: -2.0000293, y: 2}
-      - {x: -5, y: 1.9999708}
-      - {x: -4.999971, y: 1}
+    - - {x: 18.999971, y: -1}
+      - {x: 18.999971, y: 0}
+      - {x: 16, y: -0.000029300001}
+      - {x: 16.000029, y: -1}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -1463,7 +1462,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1581,7 +1580,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 25.5, y: 4.5}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &608937751
@@ -1845,7 +1844,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1963,7 +1962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 69, y: 4}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &792916556
@@ -2087,262 +2086,80 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 828826453}
     m_ColliderPaths:
-    - - X: 1090000000
-        Y: 150000000
-      - X: 1030000000
-        Y: 150000000
-      - X: 1030000000
-        Y: 100000000
-      - X: 970000000
-        Y: 100000000
-      - X: 970000000
-        Y: 60000000
-      - X: 910000000
-        Y: 60000000
-      - X: 910000000
-        Y: 30000000
-      - X: 850000000
-        Y: 30000000
-      - X: 850000000
-        Y: 10000000
+    - - X: 790000000
+        Y: -10000000
+      - X: 800000000
+        Y: -10000000
+      - X: 800000000
+        Y: 50000000
       - X: 790000000
-        Y: 10000000
+        Y: 50000000
       - X: 790000000
         Y: 0
-      - X: 710000000
+      - X: 610000000
         Y: 0
-      - X: 710000000
+      - X: 610000000
+        Y: 20000000
+      - X: 600000000
+        Y: 20000000
+      - X: 600000000
+        Y: 0
+      - X: 410000000
+        Y: 0
+      - X: 410000000
         Y: -20000000
-      - X: 1090000000
+      - X: 790000000
         Y: -20000000
-    - - X: 210000000
-        Y: -20000000
-      - X: 180000000
-        Y: -20000000
-      - X: 180000000
+    - - X: 150000000
+        Y: 0
+      - X: -120000000
+        Y: 0
+      - X: -120000000
+        Y: 50000000
+      - X: -130000000
+        Y: 50000000
+      - X: -130000000
         Y: -10000000
-      - X: 170000000
+      - X: -120000000
         Y: -10000000
-      - X: 170000000
-        Y: 0
-      - X: 110000000
-        Y: 0
-      - X: 110000000
+      - X: -120000000
         Y: -20000000
-      - X: 170000000
+      - X: 150000000
         Y: -20000000
-      - X: 170000000
-        Y: -30000000
-      - X: 210000000
-        Y: -30000000
     - - X: 320000000
-        Y: -20000000
-      - X: 280000000
-        Y: -20000000
-      - X: 280000000
-        Y: -10000000
-      - X: 270000000
-        Y: -10000000
-      - X: 270000000
         Y: 0
-      - X: 210000000
+      - X: 200000000
         Y: 0
-      - X: 210000000
+      - X: 200000000
         Y: -20000000
-      - X: 270000000
-        Y: -20000000
-      - X: 270000000
-        Y: -30000000
-      - X: 320000000
-        Y: -30000000
-    - - X: 110000000
-        Y: -20000000
-      - X: 90000000
-        Y: -20000000
-      - X: 90000000
-        Y: -10000000
-      - X: 80000000
-        Y: -10000000
-      - X: 80000000
-        Y: 0
-      - X: 20000000
-        Y: 0
-      - X: 20000000
-        Y: -20000000
-      - X: 80000000
-        Y: -20000000
-      - X: 80000000
-        Y: -30000000
-      - X: 110000000
-        Y: -30000000
-    - - X: 570000000
-        Y: -20000000
-      - X: 510000000
-        Y: -20000000
-      - X: 510000000
-        Y: -10000000
-      - X: 500000000
-        Y: -10000000
-      - X: 500000000
-        Y: 0
-      - X: 440000000
-        Y: 0
-      - X: 440000000
-        Y: -20000000
-      - X: 500000000
-        Y: -20000000
-      - X: 500000000
-        Y: -30000000
-      - X: 570000000
-        Y: -30000000
-    - - X: 440000000
-        Y: -20000000
-      - X: 390000000
-        Y: -20000000
-      - X: 390000000
-        Y: -10000000
-      - X: 380000000
-        Y: -10000000
-      - X: 380000000
-        Y: 0
-      - X: 320000000
-        Y: 0
       - X: 320000000
         Y: -20000000
-      - X: 380000000
-        Y: -20000000
-      - X: 380000000
-        Y: -30000000
-      - X: 440000000
-        Y: -30000000
-    - - X: 20000000
-        Y: -20000000
-      - X: 10000000
-        Y: -20000000
-      - X: 10000000
-        Y: -10000000
-      - X: 0
-        Y: -10000000
-      - X: 0
-        Y: 0
-      - X: -140000000
-        Y: 0
-      - X: -140000000
-        Y: -20000000
-      - X: 0
-        Y: -20000000
-      - X: 0
-        Y: -30000000
-      - X: 20000000
-        Y: -30000000
-    - - X: 710000000
-        Y: -20000000
-      - X: 640000000
-        Y: -20000000
-      - X: 640000000
-        Y: -10000000
-      - X: 630000000
-        Y: -10000000
-      - X: 630000000
-        Y: 0
-      - X: 570000000
-        Y: 0
-      - X: 570000000
-        Y: -20000000
-      - X: 630000000
-        Y: -20000000
-      - X: 630000000
-        Y: -30000000
-      - X: 710000000
-        Y: -30000000
-  - m_Collider: {fileID: 828826453}
-    m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
-    - - {x: 108.99998, y: -2}
-      - {x: 108.99998, y: 15}
-      - {x: 103, y: 14.999971}
-      - {x: 102.99997, y: 10}
-      - {x: 97, y: 9.99997}
-      - {x: 96.99997, y: 6}
-      - {x: 91, y: 5.999971}
-      - {x: 90.99997, y: 3}
-      - {x: 85, y: 2.999971}
-      - {x: 84.99997, y: 1}
-      - {x: 79, y: 0.99997073}
+    - - {x: 78.99997, y: -2}
+      - {x: 79.00003, y: -1}
+      - {x: 80, y: -0.99997073}
+      - {x: 79.99997, y: 5}
+      - {x: 79, y: 4.999971}
       - {x: 78.99997, y: 0}
-      - {x: 71, y: -0.000029300001}
-      - {x: 71.00003, y: -2}
-    - - {x: 70.99997, y: -3}
-      - {x: 70.99997, y: -2}
-      - {x: 64, y: -1.9999707}
-      - {x: 63.99997, y: -1}
-      - {x: 63, y: -0.9999706}
-      - {x: 62.99997, y: 0}
-      - {x: 57, y: -0.000029300001}
-      - {x: 57.000034, y: -2}
-      - {x: 63, y: -2.0000293}
-      - {x: 63.000034, y: -3}
-    - - {x: 20.999971, y: -3}
-      - {x: 20.999971, y: -2}
-      - {x: 18, y: -1.9999707}
-      - {x: 17.999971, y: -1}
-      - {x: 17, y: -0.9999706}
-      - {x: 16.999971, y: 0}
-      - {x: 11, y: -0.000029300001}
-      - {x: 11.00003, y: -2}
-      - {x: 17, y: -2.0000293}
-      - {x: 17.000029, y: -3}
-    - - {x: 56.99997, y: -3}
-      - {x: 56.99997, y: -2}
-      - {x: 51, y: -1.9999707}
-      - {x: 50.999973, y: -1}
-      - {x: 50, y: -0.9999706}
-      - {x: 49.999973, y: 0}
-      - {x: 44, y: -0.000029300001}
-      - {x: 44.00003, y: -2}
-      - {x: 50, y: -2.0000293}
-      - {x: 50.00003, y: -3}
-    - - {x: 43.999973, y: -3}
-      - {x: 43.999973, y: -2}
-      - {x: 39, y: -1.9999707}
-      - {x: 38.999973, y: -1}
-      - {x: 38, y: -0.9999706}
-      - {x: 37.999973, y: 0}
-      - {x: 32, y: -0.000029300001}
-      - {x: 32.00003, y: -2}
-      - {x: 38, y: -2.0000293}
-      - {x: 38.00003, y: -3}
-    - - {x: 31.999971, y: -3}
-      - {x: 31.999971, y: -2}
-      - {x: 28, y: -1.9999707}
-      - {x: 27.999971, y: -1}
-      - {x: 27, y: -0.9999706}
-      - {x: 26.999971, y: 0}
-      - {x: 21, y: -0.000029300001}
-      - {x: 21.000029, y: -2}
-      - {x: 27, y: -2.0000293}
-      - {x: 27.000029, y: -3}
-    - - {x: 10.99997, y: -3}
-      - {x: 10.99997, y: -2}
-      - {x: 9, y: -1.9999707}
-      - {x: 8.99997, y: -1}
-      - {x: 8, y: -0.9999706}
-      - {x: 7.9999704, y: 0}
-      - {x: 2, y: -0.000029300001}
-      - {x: 2.0000293, y: -2}
-      - {x: 8, y: -2.0000293}
-      - {x: 8.00003, y: -3}
-    - - {x: 1.9999708, y: -3}
-      - {x: 1.9999708, y: -2}
-      - {x: 1, y: -1.9999707}
-      - {x: 0.99997073, y: -1}
-      - {x: 0, y: -0.9999706}
-      - {x: -0.000029300001, y: 0}
-      - {x: -14, y: -0.000029300001}
-      - {x: -13.999971, y: -2}
-      - {x: 0, y: -2.0000293}
-      - {x: 0.000029300001, y: -3}
+      - {x: 61, y: 0.0000294}
+      - {x: 60.99997, y: 2}
+      - {x: 60, y: 1.9999708}
+      - {x: 59.99997, y: 0}
+      - {x: 41, y: -0.000029300001}
+      - {x: 41.00003, y: -2}
+    - - {x: 14.999971, y: -2}
+      - {x: 14.999971, y: 0}
+      - {x: -12, y: 0.0000294}
+      - {x: -12.00003, y: 5}
+      - {x: -13, y: 4.999971}
+      - {x: -12.99997, y: -1}
+      - {x: -12, y: -1.0000294}
+      - {x: -11.99997, y: -2}
+    - - {x: 31.999971, y: -2}
+      - {x: 31.999971, y: 0}
+      - {x: 20, y: -0.000029300001}
+      - {x: 20.000029, y: -2}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -4576,7 +4393,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -4694,7 +4511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 77, y: 3}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &901768027
@@ -4945,6 +4762,7 @@ MonoBehaviour:
   largo: 4.5
   aperturaMediaDeg: 12
   ojoOffset: {x: 0.2, y: 0.35}
+  radioJugador: 0.5
   paredes:
     serializedVersion: 2
     m_Bits: 64
@@ -6635,22 +6453,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1653389849}
     m_ColliderPaths:
-    - - X: -50000000
-        Y: 20000000
-      - X: -80000000
-        Y: 20000000
-      - X: -80000000
-        Y: 10000000
-      - X: -50000000
-        Y: 10000000
-  - m_Collider: {fileID: 1653389849}
-    m_ColliderPaths: []
+    - - X: 410000000
+        Y: 0
+      - X: 320000000
+        Y: 0
+      - X: 320000000
+        Y: -10000000
+      - X: 410000000
+        Y: -10000000
   m_CompositePaths:
     m_Paths:
-    - - {x: -5.000029, y: 1}
-      - {x: -5.000029, y: 2}
-      - {x: -8, y: 1.9999708}
-      - {x: -7.9999704, y: 1}
+    - - {x: 40.999973, y: -1}
+      - {x: 40.999973, y: 0}
+      - {x: 32, y: -0.000029300001}
+      - {x: 32.00003, y: -1}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -7085,7 +6901,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -7203,7 +7019,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 17, y: 4}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1739624868
@@ -7518,6 +7334,7 @@ MonoBehaviour:
   largo: 4.5
   aperturaMediaDeg: 12
   ojoOffset: {x: 0.2, y: 0.35}
+  radioJugador: 0.5
   paredes:
     serializedVersion: 2
     m_Bits: 64
@@ -7846,7 +7663,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -7964,7 +7781,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2, y: 4}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2026971549
@@ -8027,7 +7844,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -8145,7 +7962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 36, y: 4}
   m_SizeDelta: {x: 14, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2032517427
