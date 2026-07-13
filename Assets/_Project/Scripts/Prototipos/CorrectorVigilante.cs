@@ -30,6 +30,15 @@ namespace LaProyeccion.Prototipos
     /// exclusivo de un mundo (contacto solo donde existe), pero el OJO y el
     /// CONO se ven y detectan SIEMPRE: la mirada de Keplin trasciende el
     /// cambio, igual que la caja y el foco.
+    ///
+    /// Variante LETAL del cono (prototipo 2026-07-13): el CUERPO del guardia
+    /// ya mataba por contacto desde el Corrector original (sin flag). Con
+    /// <see cref="letal"/> activo, TOCAR EL CONO también mata por contacto —
+    /// no hace falta cambiar de mundo, ya no es solo "zona de no-cambio" sino
+    /// pared móvil letal, espejo de <see cref="FocoVigilancia"/>. Se reutiliza
+    /// la misma comprobación de <see cref="PlayerEnCono"/> (cuerpo con radio +
+    /// oclusión) para la detección de anomalía Y para el contacto letal. Usar
+    /// M_FocoLetal en el haz para que se lea a primera vista.
     /// </summary>
     [RequireComponent(typeof(BoxCollider2D))]
     public class CorrectorVigilante : MonoBehaviour
@@ -57,6 +66,10 @@ namespace LaProyeccion.Prototipos
         [SerializeField, Min(0f)] private float radioJugador = 0.5f;
         [Tooltip("Muros que bloquean la línea de visión del cono.")]
         [SerializeField] private LayerMask paredes;
+
+        [Header("Letalidad del cono (el cuerpo del guardia ya mata al tocarlo)")]
+        [Tooltip("Si está activo, TOCAR EL CONO mata por contacto (no hace falta cambiar de mundo). Usar M_FocoLetal en el haz.")]
+        [SerializeField] private bool letal = false;
 
         [Header("Visual (hijos; se cablean al construir)")]
         [Tooltip("Sprite del cuerpo, hijo aparte: el root queda a escala 1 para no deformar el quad del haz.")]
@@ -147,6 +160,10 @@ namespace LaProyeccion.Prototipos
             largoVisible = hit.collider != null ? hit.distance : largo;
 
             AplicarVisualHaz();
+
+            // Variante letal: tocar el cono mata por contacto, en cualquier momento.
+            if (letal && PlayerEnCono())
+                GameSession.Instance?.RespawnPlayer();
         }
 
         private Vector2 PosOjo() =>
