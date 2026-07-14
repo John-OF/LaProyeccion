@@ -59,6 +59,10 @@ namespace LaProyeccion.Core
         private Coroutine activePulse;
         private bool revealing;
 
+        /// <summary>Hay un revelado del radar en curso (lo consulta el prototipo
+        /// de peek para no pisar el registro GhostReveal a mitad de pulso).</summary>
+        public bool Revelando => revealing;
+
         private void Awake()
         {
             inventory = GetComponent<SeedInventory>();

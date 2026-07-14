@@ -131,8 +131,16 @@ namespace LaProyeccion.Player
             jumpBufferCounter = jumpBufferTime;
         }
 
+        /// <summary>
+        /// Si otro componente asume la tecla de cambio (p.ej. el prototipo de
+        /// vistazo/peek, que distingue tap = cambiar de hold = mirar), lo anuncia
+        /// aquí y este controlador deja de disparar TrySwitchWorld directamente.
+        /// </summary>
+        public bool CambioDeMundoDelegado { get; set; }
+
         private void OnSwitchPressed(InputAction.CallbackContext _)
         {
+            if (CambioDeMundoDelegado) return;
             WorldManager.Instance?.TrySwitchWorld();
         }
 
