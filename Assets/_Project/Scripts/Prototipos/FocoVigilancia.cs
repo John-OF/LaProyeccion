@@ -111,6 +111,17 @@ namespace LaProyeccion.Prototipos
             if (sombraTex != null) Destroy(sombraTex);
         }
 
+        /// <summary>
+        /// Reinicia el péndulo (fase 0 = haz recto abajo, empezando hacia la
+        /// derecha). Convención de FASE CERO del grabador/replay de pasadas:
+        /// grabación y reproducción parten de focos idénticos.
+        /// </summary>
+        public void ReiniciarFase()
+        {
+            fase = 0f;
+            anguloActual = 0f;
+        }
+
         private void Update()
         {
             // Péndulo determinista; tiempo escalado (se congela en pausa).

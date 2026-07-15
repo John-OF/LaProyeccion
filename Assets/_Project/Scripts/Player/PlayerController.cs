@@ -70,7 +70,7 @@ namespace LaProyeccion.Player
 
         private void Update()
         {
-            moveInput = input.Player.Move.ReadValue<Vector2>();
+            if (!InputDelegado) moveInput = input.Player.Move.ReadValue<Vector2>();
 
             isGrounded = Physics2D.OverlapCircle(
                 groundCheck.position, groundCheckRadius, groundLayer);
@@ -128,7 +128,28 @@ namespace LaProyeccion.Player
 
         private void OnJumpPressed(InputAction.CallbackContext _)
         {
+            if (InputDelegado) return;
             jumpBufferCounter = jumpBufferTime;
+        }
+
+        /// <summary>
+        /// Seam de inyección para el replay de pasadas (Prototipos, idea #8):
+        /// con InputDelegado el teclado deja de mover/saltar/cambiar y el
+        /// ReproductorDePasada inyecta por los métodos de abajo — que pasan por
+        /// los MISMOS caminos internos (buffer de salto incluido), no los puentean.
+        /// </summary>
+        public bool InputDelegado { get; set; }
+
+        /// <summary>Fija el eje horizontal mientras InputDelegado está activo.</summary>
+        public void InyectarMove(float x)
+        {
+            if (InputDelegado) moveInput = new Vector2(x, 0f);
+        }
+
+        /// <summary>Equivale a pulsar saltar: carga el jump buffer, como el teclado.</summary>
+        public void InyectarSalto()
+        {
+            if (InputDelegado) jumpBufferCounter = jumpBufferTime;
         }
 
         /// <summary>
@@ -140,7 +161,7 @@ namespace LaProyeccion.Player
 
         private void OnSwitchPressed(InputAction.CallbackContext _)
         {
-            if (CambioDeMundoDelegado) return;
+            if (CambioDeMundoDelegado || InputDelegado) return;
             WorldManager.Instance?.TrySwitchWorld();
         }
 

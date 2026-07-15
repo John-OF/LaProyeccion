@@ -120,6 +120,12 @@ namespace LaProyeccion.Core
             activePulse = StartCoroutine(PulseRoutine());
         }
 
+        /// <summary>
+        /// Dispara Sondear por código, por el mismo camino que la tecla Q
+        /// (lo usa el replay de pasadas — Prototipos, idea #8).
+        /// </summary>
+        public void SondearAhora() => OnSondear(default);
+
         private IEnumerator PulseRoutine()
         {
             revealing = true;

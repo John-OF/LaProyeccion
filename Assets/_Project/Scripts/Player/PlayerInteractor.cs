@@ -74,6 +74,12 @@ namespace LaProyeccion.Player
             }
         }
 
+        /// <summary>
+        /// Dispara la interacción por código, por el mismo camino que la tecla
+        /// (lo usa el replay de pasadas — Prototipos, idea #8).
+        /// </summary>
+        public void InteractuarAhora() => OnInteract(default);
+
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = new Color(1f, 1f, 0f, 0.3f);

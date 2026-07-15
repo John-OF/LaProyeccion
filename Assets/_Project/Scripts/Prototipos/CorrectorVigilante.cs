@@ -131,6 +131,19 @@ namespace LaProyeccion.Prototipos
             }
         }
 
+        /// <summary>
+        /// Vuelve al estado de arranque (posición A, rumbo y mirada hacia B,
+        /// sin pausa). Convención de FASE CERO del grabador/replay de pasadas:
+        /// grabación y reproducción parten de guardias idénticos.
+        /// </summary>
+        public void ReiniciarFase()
+        {
+            transform.position = puntoA;
+            objetivo = puntoB;
+            dir = puntoB.x >= puntoA.x ? 1 : -1;
+            pausaRestante = 0f;
+        }
+
         private void Update()
         {
             // Tiempo escalado: se congela en pausa, como todo el mundo de juego.

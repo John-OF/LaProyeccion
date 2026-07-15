@@ -369,13 +369,50 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7811386461826851986, guid: 3c43f21326012734fa006b9dae81a505, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 242723599}
+    - targetCorrespondingSourceObject: {fileID: 7811386461826851986, guid: 3c43f21326012734fa006b9dae81a505, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 242723598}
   m_SourcePrefab: {fileID: 100100000, guid: 3c43f21326012734fa006b9dae81a505, type: 3}
 --- !u!4 &242723596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4014750796533022480, guid: 3c43f21326012734fa006b9dae81a505, type: 3}
   m_PrefabInstance: {fileID: 242723595}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &242723597 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7811386461826851986, guid: 3c43f21326012734fa006b9dae81a505, type: 3}
+  m_PrefabInstance: {fileID: 242723595}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &242723598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242723597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb321848d540fb54dbdf6f2b052bacf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.ReproductorDePasada
+  pasadaAsignada: {fileID: 11400000, guid: 0d62d62f37346cc4c8ea20d410734aa4, type: 2}
+  tolerancia: 0.5
+--- !u!114 &242723599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242723597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21910a47014a2984c9df3001b0b5ecd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.GrabadorDePasada
 --- !u!1 &293136565
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,6 +462,8 @@ MonoBehaviour:
   puntoB: {x: 4, y: 0.8}
   velocidad: 2.5
   pausaEnExtremos: 0.4
+  atiendeEcos: 0
+  rangoEco: 6
 --- !u!61 &293136568
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1434,7 +1473,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -4437,6 +4476,8 @@ MonoBehaviour:
   puntoB: {x: 24, y: 0.8}
   velocidad: 3
   pausaEnExtremos: 0.4
+  atiendeEcos: 0
+  rangoEco: 6
 --- !u!61 &937558942
 BoxCollider2D:
   m_ObjectHideFlags: 0

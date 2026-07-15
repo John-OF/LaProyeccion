@@ -115,6 +115,17 @@ namespace LaProyeccion.Prototipos
                 GameSession.Instance?.RespawnPlayer();
         }
 
+        /// <summary>
+        /// Reinicia el ciclo al estado de arranque (Vigila, temporizador lleno).
+        /// Convención de FASE CERO del grabador/replay de pasadas: grabación y
+        /// reproducción parten de zonas idénticas.
+        /// </summary>
+        public void ReiniciarFase()
+        {
+            SetFase(Fase.Vigila);
+            estadoActual = 1f;
+        }
+
         private void SetFase(Fase f)
         {
             fase = f;

@@ -61,6 +61,19 @@ namespace LaProyeccion.Prototipos
             objetivo = puntoB;
         }
 
+        /// <summary>
+        /// Vuelve al estado de arranque (posición A, rumbo a B, sin pausa ni
+        /// investigación). Convención de FASE CERO del grabador/replay de
+        /// pasadas: grabación y reproducción parten de guardias idénticos.
+        /// </summary>
+        public void ReiniciarFase()
+        {
+            transform.position = puntoA;
+            objetivo = puntoB;
+            pausaRestante = 0f;
+            investigando = false;
+        }
+
         private void Update()
         {
             if (AtenderEco()) return;
