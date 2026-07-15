@@ -75,7 +75,7 @@ namespace LaProyeccion.Prototipos
             player = GetComponent<PlayerController>();
             radar = GetComponent<RadarPulseController>();
             input = new PlayerInputActions();
-            SetRevealValue(1f); // arranque limpio (gotcha del material sucio entre Plays)
+            ResetMaterialesDeterministas(); // arranque limpio (gotcha del material sucio entre Plays)
         }
 
         private void OnEnable()
@@ -104,7 +104,25 @@ namespace LaProyeccion.Prototipos
 
         private void OnApplicationQuit()
         {
+            ResetMaterialesDeterministas();
+        }
+
+        /// <summary>
+        /// Deja TODAS las propiedades animadas de los .mat en los valores exactos
+        /// del asset committeado (_Reveal=1, _Centro=0, _Radio=6) — si no, el
+        /// último peek de la sesión queda escrito en el material y git lo marca
+        /// modificado tras cada Play (misma clase de bug que el del glitch,
+        /// resuelto en 07264f6 con esta misma receta).
+        /// </summary>
+        private void ResetMaterialesDeterministas()
+        {
             SetRevealValue(1f);
+            foreach (var m in new[] { peekSimMaterial, peekRealMaterial })
+            {
+                if (m == null) continue;
+                m.SetVector(CentroID, Vector4.zero);
+                m.SetFloat(RadioID, 6f);
+            }
         }
 
         // ==================== Input ====================
