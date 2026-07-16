@@ -119,8 +119,28 @@ namespace LaProyeccion.Core
         /// </summary>
         public void SetRespawnPoint(Vector3 position) => CurrentRespawn = position;
 
+        /// <summary>
+        /// Interceptor opcional del respawn (extensión retrocompatible, prototipo
+        /// "muerte como corrección" en Pruebas/). Si está asignado y devuelve true,
+        /// asume la secuencia completa de reaparición y debe terminar llamando a
+        /// <see cref="RespawnPlayerImmediate"/>. Sin interceptor (todo el juego
+        /// real), el comportamiento es el de siempre.
+        /// </summary>
+        public static System.Func<bool> RespawnInterceptor;
+
         /// <summary>Reaparece al jugador en el último punto seguro y frena su velocidad.</summary>
         public void RespawnPlayer()
+        {
+            if (player == null) return;
+            if (RespawnInterceptor != null && RespawnInterceptor()) return;
+            RespawnPlayerImmediate();
+        }
+
+        /// <summary>
+        /// El respawn clásico, sin interceptor: teletransporte al último punto
+        /// seguro, velocidad a cero y aviso a los sistemas suscritos.
+        /// </summary>
+        public void RespawnPlayerImmediate()
         {
             if (player == null) return;
             player.position = CurrentRespawn;

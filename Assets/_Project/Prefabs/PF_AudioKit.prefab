@@ -56,12 +56,20 @@ MonoBehaviour:
   sfxDoorOpen: {fileID: 8300000, guid: e308d54fa1453c54c841db8b75345b13, type: 3}
   sfxSwitchActivate: {fileID: 8300000, guid: 4662cc2ca5710cd45a81546d69f8ea88, type: 3}
   sfxKeplinMessage: {fileID: 8300000, guid: ae37732004377ba4b854a59dc8137b9f, type: 3}
+  sfxDeath: {fileID: 8300000, guid: 6c7e341bfaab5e4419944572afb9ccc2, type: 3}
+  sfxSeedPickup: {fileID: 0}
+  sfxRadarPulse: {fileID: 0}
   jumpVolume: 0.6
   worldSwitchVolume: 0.8
   doorOpenVolume: 0.9
   switchActivateVolume: 0.8
   keplinMessageVolume: 0.7
+  deathVolume: 0.8
+  seedPickupVolume: 0.7
+  radarPulseVolume: 0.9
   musicVolume: 0.6
+  seedPickupPitch: 1.4
+  radarPulsePitch: 0.6
 --- !u!114 &1998267686301228548
 MonoBehaviour:
   m_ObjectHideFlags: 0

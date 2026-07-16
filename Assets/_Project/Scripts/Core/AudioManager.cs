@@ -38,6 +38,8 @@ namespace LaProyeccion.Core
         [SerializeField] private AudioClip sfxDoorOpen;
         [SerializeField] private AudioClip sfxSwitchActivate;
         [SerializeField] private AudioClip sfxKeplinMessage;
+        [Tooltip("Muerte/corrección del jugador (Correctores, vigilancia letal, suelo glicheado, caída, MuerteCorreccion).")]
+        [SerializeField] private AudioClip sfxDeath;
         [Tooltip("Recoger Semilla. Si está vacío, usa sfxSwitchActivate con el pitch de abajo (provisional F1.P4; clip real en F6.P2).")]
         [SerializeField] private AudioClip sfxSeedPickup;
         [Tooltip("Pulso del radar. Si está vacío, usa sfxWorldSwitch a pitch 0.6 (provisional F1.P5; clip real en F6.P2 — debe sentirse 'caro', GDD §8).")]
@@ -49,6 +51,7 @@ namespace LaProyeccion.Core
         [Range(0f, 1f)][SerializeField] private float doorOpenVolume = 0.9f;
         [Range(0f, 1f)][SerializeField] private float switchActivateVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float keplinMessageVolume = 0.7f;
+        [Range(0f, 1f)][SerializeField] private float deathVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float seedPickupVolume = 0.7f;
         [Range(0f, 1f)][SerializeField] private float radarPulseVolume = 0.9f;
         [Range(0f, 1f)][SerializeField] private float musicVolume = 0.6f;
@@ -135,6 +138,7 @@ namespace LaProyeccion.Core
         public void PlayDoorOpen() => sfxWorldSource.PlayOneShot(sfxDoorOpen, doorOpenVolume);
         public void PlaySwitchActivate() => sfxWorldSource.PlayOneShot(sfxSwitchActivate, switchActivateVolume);
         public void PlayKeplinMessage() => sfxSource.PlayOneShot(sfxKeplinMessage, keplinMessageVolume);
+        public void PlayDeath() => sfxWorldSource.PlayOneShot(sfxDeath, deathVolume);
 
         /// <summary>Recoger Semilla (F1.P4). Provisional: clip del switch a pitch ≈1.4.</summary>
         public void PlaySeedPickup()
