@@ -46,7 +46,11 @@ namespace LaProyeccion.Player
         {
             rb = GetComponent<Rigidbody2D>();
             rb.freezeRotation = true;
-            rb.gravityScale = 3f; // sensación más sólida; ajustable
+            // gravityScale NO se toca aquí: manda el valor del Rigidbody2D (3 en
+            // PF_Player). Hasta el 2026-07-16 este Awake lo forzaba a 3 y pisaba
+            // al Inspector, que serializaba 2 — el dial mentía y quien calculaba
+            // la física leyendo el Inspector se equivocaba en un 50% (apex real
+            // 2.45 u con g=90, no 3.68 con g=60). Fuente de verdad única: el prefab.
             input = new PlayerInputActions();
         }
 
