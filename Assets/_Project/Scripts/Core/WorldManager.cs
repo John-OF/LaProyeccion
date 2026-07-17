@@ -41,6 +41,16 @@ namespace LaProyeccion.Core
         /// Lo usaremos para mostrar el primer mensaje de Keplin en Zona 0.</summary>
         public static event System.Action OnSwitchUnlocked;
 
+        /// <summary>
+        /// Se dispara cuando el jugador intenta cambiar de mundo y el switch está
+        /// BLOQUEADO (switchEnabled=false). No se dispara por cooldown: el cooldown
+        /// es anti-spam, no una regla del mundo. Extensión retrocompatible
+        /// (2026-07-16, prototipo de zonas de no-cambio): sin suscriptores no pasa
+        /// nada, pero permite dar feedback del rechazo — el jugador debe saber por
+        /// qué su tecla no hizo nada (Pilar 3).
+        /// </summary>
+        public static event System.Action OnSwitchDenied;
+
         private float lastSwitchTime = -999f;
 
         private void Awake()
@@ -73,7 +83,7 @@ namespace LaProyeccion.Core
         /// </summary>
         public bool TrySwitchWorld()
         {
-            if (!switchEnabled) return false;
+            if (!switchEnabled) { OnSwitchDenied?.Invoke(); return false; }
             if (Time.time - lastSwitchTime < switchCooldown) return false;
 
             CurrentWorld = CurrentWorld == WorldState.Simulation
