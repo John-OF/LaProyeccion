@@ -113,3 +113,8 @@ InitTestScene*.unity*
 
 # Private working docs (GDD, bitácora, bugs, pendientes, ideas)
 /_docs/
+
+# Capturas de pantalla del Editor (MCP las escribe aquí por defecto): material
+# de inspección, no assets del juego
+/[Aa]ssets/[Ss]creenshots/
+/[Aa]ssets/[Ss]creenshots.meta
