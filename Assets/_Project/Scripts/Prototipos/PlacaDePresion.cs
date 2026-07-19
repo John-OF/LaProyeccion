@@ -26,6 +26,9 @@ namespace LaProyeccion.Prototipos
     ///   vuelve una llave rítmica que se lee (Pilar 3).
     /// - Las <see cref="PlataformaCongelable"/>: congela la plataforma ENCIMA
     ///   de la placa y queda pisada mientras dure la congelación.
+    /// - Las <see cref="CajaEmpujable"/> (idea #14, extensión retrocompatible):
+    ///   la caja como pisapapeles — aparcada encima mantiene la placa pisada,
+    ///   también clavada en el mundo donde no se empuja (sigue siendo sólida).
     ///
     /// Detección por OverlapBox en Update, SIN OnTriggerEnter/Exit: inmune a
     /// los exits perdidos por teleport/respawn (lección de ZonaDeCambio). Los
@@ -46,6 +49,7 @@ namespace LaProyeccion.Prototipos
         [SerializeField] private bool pisaEco = true;
         [SerializeField] private bool pisanCorrectores = true;
         [SerializeField] private bool pisanPlataformasCongelables = true;
+        [SerializeField] private bool pisanCajas = true;
 
         [Header("Audio")]
         [Tooltip("Sonido de interruptor al activarse (solo en el flanco de subida).")]
@@ -98,6 +102,7 @@ namespace LaProyeccion.Prototipos
                 if (pisanCorrectores && (col.GetComponentInParent<Corrector>() != null ||
                                          col.GetComponentInParent<CorrectorVigilante>() != null)) return true;
                 if (pisanPlataformasCongelables && col.GetComponentInParent<PlataformaCongelable>() != null) return true;
+                if (pisanCajas && col.GetComponentInParent<CajaEmpujable>() != null) return true;
             }
             return false;
         }
