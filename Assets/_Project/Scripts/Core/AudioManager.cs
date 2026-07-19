@@ -27,6 +27,10 @@ namespace LaProyeccion.Core
         [SerializeField] private AudioMixerGroup musicSimGroup;
         [SerializeField] private AudioMixerGroup musicRealGroup;
         [SerializeField] private AudioMixerGroup sfxGroup;
+        [Tooltip("Canal 'el otro mundo se oye' (idea #15): fuentes posicionales que suenan " +
+                 "desde el mundo opuesto. Hijo de SFX en el mixer (los sliders SFX/Master lo " +
+                 "gobiernan). Si está vacío, cae al grupo SFX.")]
+        [SerializeField] private AudioMixerGroup otroMundoGroup;
 
         [Header("Music Clips")]
         [SerializeField] private AudioClip musicSimulation;
@@ -132,6 +136,14 @@ namespace LaProyeccion.Core
         }
 
         // ==================== API pública ====================
+
+        /// <summary>
+        /// Grupo del mixer para fuentes posicionales del mundo opuesto (idea #15,
+        /// SonidoDelOtroMundo). Las fuentes viven en sus objetos (son posicionales),
+        /// pero se rutean por aquí: nada de AudioSources sueltos sin mixer (lección
+        /// del tick del suelo parpadeante).
+        /// </summary>
+        public AudioMixerGroup GrupoOtroMundo => otroMundoGroup != null ? otroMundoGroup : sfxGroup;
 
         public void PlayJump() => sfxWorldSource.PlayOneShot(sfxJump, jumpVolume);
         public void PlayWorldSwitch() => sfxWorldSource.PlayOneShot(sfxWorldSwitch, worldSwitchVolume);

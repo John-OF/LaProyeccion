@@ -73,12 +73,32 @@ AudioMixerGroupController:
   m_Name: SFX
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 61bb262c6238e67408d7c975f49cfeda
-  m_Children: []
+  m_Children:
+  - {fileID: -2381915501719171213}
   m_Volume: 7dc492d5a674edd4bad45a04c3804584
   m_Pitch: 3e4653335c3f2cb4484a35f34e016dc9
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -858715507105014826}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &-2381915501719171213
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: OtroMundo
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 91f36da55c65c4e45b256238fc09bfff
+  m_Children: []
+  m_Volume: 17312e3e28ea1ab479def8ff9650782c
+  m_Pitch: 7d8645133458fcb4387edd649887e84a
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 1352310087459432537}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -141,6 +161,7 @@ AudioMixerController:
     - c1649d74311d5d84caa649a316b0c872
     - 2cc0a656fb1c7f04bbbcd7ffe92c0207
     - 61bb262c6238e67408d7c975f49cfeda
+    - 91f36da55c65c4e45b256238fc09bfff
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: -7659921076833606011}
@@ -191,6 +212,20 @@ AudioMixerSnapshotController:
   m_FloatValues:
     572a0f70ab24ad04fa9172eec107a0d7: -80
   m_TransitionOverrides: {}
+--- !u!244 &1352310087459432537
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 63dd910aad53e3446841847685ab72ad
+  m_EffectName: Attenuation
+  m_MixLevel: 96d3f6302d1eade4d8ae039374507f1d
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &1668398583939907943
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

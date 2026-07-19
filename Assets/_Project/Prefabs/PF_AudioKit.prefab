@@ -49,6 +49,7 @@ MonoBehaviour:
   musicSimGroup: {fileID: -6408403606744297493, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
   musicRealGroup: {fileID: -7233686924617112894, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
   sfxGroup: {fileID: -3946740955898096758, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  otroMundoGroup: {fileID: -2381915501719171213, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
   musicSimulation: {fileID: 8300000, guid: 8f4be22792707bb468abbbf52552759b, type: 3}
   musicReal: {fileID: 8300000, guid: 301937417e614f242a428b03b0bbf386, type: 3}
   sfxJump: {fileID: 8300000, guid: 13b0bdc3dbe12464fac7f44c8f894ff3, type: 3}
