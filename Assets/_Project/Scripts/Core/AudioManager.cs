@@ -48,6 +48,10 @@ namespace LaProyeccion.Core
         [SerializeField] private AudioClip sfxSeedPickup;
         [Tooltip("Pulso del radar. Si está vacío, usa sfxWorldSwitch a pitch 0.6 (provisional F1.P5; clip real en F6.P2 — debe sentirse 'caro', GDD §8).")]
         [SerializeField] private AudioClip sfxRadarPulse;
+        [Tooltip("Piedra que golpea SUELO en la cueva (T3): golpe seco. Provisional: sfxSwitchActivate a pitch 0.7.")]
+        [SerializeField] private AudioClip sfxPiedraGolpe;
+        [Tooltip("Piedra que cae en AGUA en la cueva (T4): chapoteo. Provisional: sfxDoorOpen a pitch 1.3.")]
+        [SerializeField] private AudioClip sfxPiedraAgua;
 
         [Header("Volumes (per-clip multiplier, 0..1)")]
         [Range(0f, 1f)][SerializeField] private float jumpVolume = 0.6f;
@@ -58,12 +62,18 @@ namespace LaProyeccion.Core
         [Range(0f, 1f)][SerializeField] private float deathVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float seedPickupVolume = 0.7f;
         [Range(0f, 1f)][SerializeField] private float radarPulseVolume = 0.9f;
+        [Range(0f, 1f)][SerializeField] private float piedraGolpeVolume = 0.8f;
+        [Range(0f, 1f)][SerializeField] private float piedraAguaVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float musicVolume = 0.6f;
 
         [Tooltip("Pitch del SFX de semilla (≈1.4 mientras el clip provisional sea el del switch).")]
         [SerializeField, Range(0.5f, 2f)] private float seedPickupPitch = 1.4f;
         [Tooltip("Pitch del pulso del radar (≈0.6 mientras el clip provisional sea el del cambio de mundo).")]
         [SerializeField, Range(0.3f, 2f)] private float radarPulsePitch = 0.6f;
+        [Tooltip("Pitch del golpe seco de la piedra (≈0.7 mientras el clip provisional sea el del switch).")]
+        [SerializeField, Range(0.3f, 2f)] private float piedraGolpePitch = 0.7f;
+        [Tooltip("Pitch del chapoteo de la piedra (≈1.3 mientras el clip provisional sea el de la puerta).")]
+        [SerializeField, Range(0.3f, 2f)] private float piedraAguaPitch = 1.3f;
 
         // AudioSources creados en runtime
         AudioSource musicSimSource;
@@ -169,6 +179,24 @@ namespace LaProyeccion.Core
             if (clip == null) return;
             sfxPitchedSource.pitch = sfxRadarPulse != null ? 1f : radarPulsePitch;
             sfxPitchedSource.PlayOneShot(clip, radarPulseVolume);
+        }
+
+        /// <summary>Piedra que golpea suelo en la cueva (T3): golpe seco. Provisional: switch a pitch ≈0.7.</summary>
+        public void PlayPiedraGolpe()
+        {
+            var clip = sfxPiedraGolpe != null ? sfxPiedraGolpe : sfxSwitchActivate;
+            if (clip == null) return;
+            sfxPitchedSource.pitch = sfxPiedraGolpe != null ? 1f : piedraGolpePitch;
+            sfxPitchedSource.PlayOneShot(clip, piedraGolpeVolume);
+        }
+
+        /// <summary>Piedra que cae en agua en la cueva (T4): chapoteo. Provisional: puerta a pitch ≈1.3.</summary>
+        public void PlayPiedraAgua()
+        {
+            var clip = sfxPiedraAgua != null ? sfxPiedraAgua : sfxDoorOpen;
+            if (clip == null) return;
+            sfxPitchedSource.pitch = sfxPiedraAgua != null ? 1f : piedraAguaPitch;
+            sfxPitchedSource.PlayOneShot(clip, piedraAguaVolume);
         }
     }
 }
