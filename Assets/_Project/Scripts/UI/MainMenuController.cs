@@ -8,8 +8,8 @@ using LaProyeccion.Core;
 namespace LaProyeccion.UI
 {
     /// <summary>
-    /// Controla el menú principal: navegación entre los tres paneles
-    /// (principal, jugar, opciones) y las acciones de arranque de partida.
+    /// Controla el menú principal: navegación entre los cuatro paneles
+    /// (principal, jugar, opciones, controles) y las acciones de arranque de partida.
     ///
     /// Los onClick de los botones se cablean por código en Awake (AddListener)
     /// en lugar de UnityEvents serializados: más simple de asignar y menos frágil.
@@ -20,10 +20,13 @@ namespace LaProyeccion.UI
         [SerializeField] private GameObject panelMain;
         [SerializeField] private GameObject panelPlay;
         [SerializeField] private GameObject panelOptions;
+        [Tooltip("Panel de controles (prefab PF_PanelControles). Su botón Volver se cablea por código.")]
+        [SerializeField] private ControlsPanel panelControls;
 
         [Header("Botones - Principal")]
         [SerializeField] private Button buttonPlay;
         [SerializeField] private Button buttonOptions;
+        [SerializeField] private Button buttonControls;
         [SerializeField] private Button buttonQuit;
 
         [Header("Botones - Jugar")]
@@ -46,6 +49,7 @@ namespace LaProyeccion.UI
 
             Wire(buttonPlay, ShowPlay);
             Wire(buttonOptions, ShowOptions);
+            Wire(buttonControls, ShowControls);
             Wire(buttonQuit, OnQuit);
 
             Wire(buttonNewGame, OnNewGame);
@@ -53,6 +57,7 @@ namespace LaProyeccion.UI
             Wire(buttonBackFromPlay, ShowMain);
 
             Wire(buttonBackFromOptions, ShowMain);
+            if (panelControls != null) Wire(panelControls.BotonVolver, ShowMain);
         }
 
         private void Start()
@@ -87,7 +92,8 @@ namespace LaProyeccion.UI
         private void OnCancelPressed(InputAction.CallbackContext _)
         {
             if (panelPlay != null && panelPlay.activeSelf) { ShowMain(); return; }
-            if (panelOptions != null && panelOptions.activeSelf) ShowMain();
+            if (panelOptions != null && panelOptions.activeSelf) { ShowMain(); return; }
+            if (panelControls != null && panelControls.gameObject.activeSelf) ShowMain();
         }
 
         private static void Wire(Button b, UnityEngine.Events.UnityAction action)
@@ -118,11 +124,20 @@ namespace LaProyeccion.UI
             SelectFirstIn(panelOptions);
         }
 
+        public void ShowControls()
+        {
+            if (panelControls == null) return;
+            SwitchPanel(panelControls.gameObject);
+            // El panel es una tabla: el único navegable es "Volver".
+            Select(panelControls.BotonVolver);
+        }
+
         private void SwitchPanel(GameObject target)
         {
             if (panelMain != null) panelMain.SetActive(target == panelMain);
             if (panelPlay != null) panelPlay.SetActive(target == panelPlay);
             if (panelOptions != null) panelOptions.SetActive(target == panelOptions);
+            if (panelControls != null) panelControls.gameObject.SetActive(target == panelControls.gameObject);
         }
 
         /// <summary>

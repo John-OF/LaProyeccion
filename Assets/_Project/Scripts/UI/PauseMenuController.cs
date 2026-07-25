@@ -26,10 +26,13 @@ namespace LaProyeccion.UI
         [SerializeField] private GameObject panelRoot;
         [SerializeField] private GameObject panelPause;
         [SerializeField] private GameObject panelOptions;
+        [Tooltip("Panel de controles (prefab PF_PanelControles). Su botón Volver se cablea por código.")]
+        [SerializeField] private ControlsPanel panelControls;
 
         [Header("Botones - Pausa")]
         [SerializeField] private Button buttonContinue;
         [SerializeField] private Button buttonOptions;
+        [SerializeField] private Button buttonControls;
         [SerializeField] private Button buttonQuitToMenu;
 
         [Header("Botones - Opciones")]
@@ -49,8 +52,10 @@ namespace LaProyeccion.UI
 
             Wire(buttonContinue, Resume);
             Wire(buttonOptions, ShowOptions);
+            Wire(buttonControls, ShowControls);
             Wire(buttonQuitToMenu, QuitToMenu);
             Wire(buttonBackFromOptions, ShowPause);
+            if (panelControls != null) Wire(panelControls.BotonVolver, ShowPause);
         }
 
         private void Start()
@@ -108,9 +113,9 @@ namespace LaProyeccion.UI
             {
                 Pause();
             }
-            else if (panelOptions != null && panelOptions.activeSelf)
+            else if (EnSubpanel)
             {
-                // Esc dentro de Opciones vuelve al panel de pausa, no reanuda.
+                // Esc dentro de Opciones/Controles vuelve al panel de pausa, no reanuda.
                 ShowPause();
             }
             else
@@ -120,16 +125,21 @@ namespace LaProyeccion.UI
         }
 
         /// <summary>
-        /// B (Xbox) / Círculo (PS) = atrás. Solo actúa en pausa: en Opciones
-        /// vuelve al panel de pausa; en el panel de pausa reanuda. Durante el
-        /// juego no hace nada (no abre el menú).
+        /// B (Xbox) / Círculo (PS) = atrás. Solo actúa en pausa: en Opciones o
+        /// Controles vuelve al panel de pausa; en el panel de pausa reanuda.
+        /// Durante el juego no hace nada (no abre el menú).
         /// </summary>
         private void OnCancelPressed(InputAction.CallbackContext _)
         {
             if (!IsPaused) return;
-            if (panelOptions != null && panelOptions.activeSelf) ShowPause();
+            if (EnSubpanel) ShowPause();
             else Resume();
         }
+
+        /// <summary>True si hay abierto un subpanel (Opciones o Controles).</summary>
+        private bool EnSubpanel =>
+            (panelOptions != null && panelOptions.activeSelf) ||
+            (panelControls != null && panelControls.gameObject.activeSelf);
 
         public void Pause()
         {
@@ -187,10 +197,19 @@ namespace LaProyeccion.UI
             SelectFirstIn(panelOptions);
         }
 
+        public void ShowControls()
+        {
+            if (panelControls == null) return;
+            SwitchPanel(panelControls.gameObject);
+            // El panel es una tabla: el único navegable es "Volver".
+            Select(panelControls.BotonVolver);
+        }
+
         private void SwitchPanel(GameObject target)
         {
             if (panelPause != null) panelPause.SetActive(target == panelPause);
             if (panelOptions != null) panelOptions.SetActive(target == panelOptions);
+            if (panelControls != null) panelControls.gameObject.SetActive(target == panelControls.gameObject);
         }
 
         private static void Select(Button button)
