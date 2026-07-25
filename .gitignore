@@ -118,3 +118,9 @@ InitTestScene*.unity*
 # de inspección, no assets del juego
 /[Aa]ssets/[Ss]creenshots/
 /[Aa]ssets/[Ss]creenshots.meta
+
+# Backups que Unity genera sola al recompilar con una escena sin guardar
+# (aparecen tras un domain reload, p.ej. al editar scripts vía MCP): son
+# copias de recuperación, no fuentes
+/[Aa]ssets/_[Rr]ecovery/
+/[Aa]ssets/_[Rr]ecovery.meta
