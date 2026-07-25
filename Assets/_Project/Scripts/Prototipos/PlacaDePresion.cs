@@ -24,6 +24,13 @@ namespace LaProyeccion.Prototipos
     ///   posición no sabe de mundos); si en el juego real molesta, se filtra.
     /// - Los CORRECTORES (y CorrectorVigilante): la patrulla determinista se
     ///   vuelve una llave rítmica que se lee (Pilar 3).
+    /// - El <see cref="CorrectorCongelable"/> (extensión retrocombatible 2026-07-25,
+    ///   para el lab de composición): faltaba en la lista porque NO deriva de
+    ///   Corrector, es un MonoBehaviour aparte. Cruce que habilita: esperar a que
+    ///   el guardia pise la placa, cambiar de mundo y dejarlo CONGELADO encima —
+    ///   el peligro se convierte en el lastre que te abre la puerta. Va bajo el
+    ///   mismo flag `pisanCorrectores` (es la misma familia) para no añadir un
+    ///   campo serializado nuevo a placas ya colocadas en escenas.
     /// - Las <see cref="PlataformaCongelable"/>: congela la plataforma ENCIMA
     ///   de la placa y queda pisada mientras dure la congelación.
     /// - Las <see cref="CajaEmpujable"/> (idea #14, extensión retrocompatible):
@@ -100,7 +107,8 @@ namespace LaProyeccion.Prototipos
 
                 if (pisaJugador && col.GetComponentInParent<PlayerController>() != null) return true;
                 if (pisanCorrectores && (col.GetComponentInParent<Corrector>() != null ||
-                                         col.GetComponentInParent<CorrectorVigilante>() != null)) return true;
+                                         col.GetComponentInParent<CorrectorVigilante>() != null ||
+                                         col.GetComponentInParent<CorrectorCongelable>() != null)) return true;
                 if (pisanPlataformasCongelables && col.GetComponentInParent<PlataformaCongelable>() != null) return true;
                 if (pisanCajas && col.GetComponentInParent<CajaEmpujable>() != null) return true;
             }
