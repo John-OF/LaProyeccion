@@ -28,11 +28,16 @@ namespace LaProyeccion.UI
         [SerializeField] private GameObject panelOptions;
         [Tooltip("Panel de controles (prefab PF_PanelControles). Su botón Volver se cablea por código.")]
         [SerializeField] private ControlsPanel panelControls;
+        [Tooltip("ANDAMIAJE DE DESARROLLO: salto entre laboratorios. Su botón se DESTRUYE " +
+                 "fuera del editor (ver LabsPanel.Disponible), así que no llega al juego.")]
+        [SerializeField] private LabsPanel panelLabs;
 
         [Header("Botones - Pausa")]
         [SerializeField] private Button buttonContinue;
         [SerializeField] private Button buttonOptions;
         [SerializeField] private Button buttonControls;
+        [Tooltip("Botón 'Laboratorios'. Se destruye solo fuera del editor.")]
+        [SerializeField] private Button buttonLabs;
         [SerializeField] private Button buttonQuitToMenu;
 
         [Header("Botones - Opciones")]
@@ -56,6 +61,19 @@ namespace LaProyeccion.UI
             Wire(buttonQuitToMenu, QuitToMenu);
             Wire(buttonBackFromOptions, ShowPause);
             if (panelControls != null) Wire(panelControls.BotonVolver, ShowPause);
+
+            // Laboratorios: andamiaje. Fuera del editor el botón se DESTRUYE (no se
+            // oculta), para que no quede navegable con mando ni ocupe hueco en el layout.
+            if (!LabsPanel.Disponible)
+            {
+                if (buttonLabs != null) Destroy(buttonLabs.gameObject);
+                if (panelLabs != null) Destroy(panelLabs.gameObject);
+            }
+            else
+            {
+                Wire(buttonLabs, ShowLabs);
+                if (panelLabs != null) Wire(panelLabs.BotonVolver, ShowPause);
+            }
         }
 
         private void Start()
@@ -136,10 +154,11 @@ namespace LaProyeccion.UI
             else Resume();
         }
 
-        /// <summary>True si hay abierto un subpanel (Opciones o Controles).</summary>
+        /// <summary>True si hay abierto un subpanel (Opciones, Controles o Laboratorios).</summary>
         private bool EnSubpanel =>
             (panelOptions != null && panelOptions.activeSelf) ||
-            (panelControls != null && panelControls.gameObject.activeSelf);
+            (panelControls != null && panelControls.gameObject.activeSelf) ||
+            (panelLabs != null && panelLabs.gameObject.activeSelf);
 
         public void Pause()
         {
@@ -205,11 +224,20 @@ namespace LaProyeccion.UI
             Select(panelControls.BotonVolver);
         }
 
+        /// <summary>ANDAMIAJE: lista de laboratorios (solo en el editor).</summary>
+        public void ShowLabs()
+        {
+            if (panelLabs == null) return;
+            SwitchPanel(panelLabs.gameObject);
+            SelectFirstIn(panelLabs.gameObject);
+        }
+
         private void SwitchPanel(GameObject target)
         {
             if (panelPause != null) panelPause.SetActive(target == panelPause);
             if (panelOptions != null) panelOptions.SetActive(target == panelOptions);
             if (panelControls != null) panelControls.gameObject.SetActive(target == panelControls.gameObject);
+            if (panelLabs != null) panelLabs.gameObject.SetActive(target == panelLabs.gameObject);
         }
 
         private static void Select(Button button)

@@ -22,11 +22,16 @@ namespace LaProyeccion.UI
         [SerializeField] private GameObject panelOptions;
         [Tooltip("Panel de controles (prefab PF_PanelControles). Su botón Volver se cablea por código.")]
         [SerializeField] private ControlsPanel panelControls;
+        [Tooltip("ANDAMIAJE DE DESARROLLO: salto entre laboratorios. Su botón se DESTRUYE " +
+                 "fuera del editor (ver LabsPanel.Disponible), así que no llega al juego.")]
+        [SerializeField] private LabsPanel panelLabs;
 
         [Header("Botones - Principal")]
         [SerializeField] private Button buttonPlay;
         [SerializeField] private Button buttonOptions;
         [SerializeField] private Button buttonControls;
+        [Tooltip("Botón 'Laboratorios'. Se destruye solo fuera del editor.")]
+        [SerializeField] private Button buttonLabs;
         [SerializeField] private Button buttonQuit;
 
         [Header("Botones - Jugar")]
@@ -58,6 +63,19 @@ namespace LaProyeccion.UI
 
             Wire(buttonBackFromOptions, ShowMain);
             if (panelControls != null) Wire(panelControls.BotonVolver, ShowMain);
+
+            // Laboratorios: andamiaje. Fuera del editor el botón se DESTRUYE (no se
+            // oculta), para que no quede navegable con mando ni ocupe hueco en el layout.
+            if (!LabsPanel.Disponible)
+            {
+                if (buttonLabs != null) Destroy(buttonLabs.gameObject);
+                if (panelLabs != null) Destroy(panelLabs.gameObject);
+            }
+            else
+            {
+                Wire(buttonLabs, ShowLabs);
+                if (panelLabs != null) Wire(panelLabs.BotonVolver, ShowMain);
+            }
         }
 
         private void Start()
@@ -93,6 +111,7 @@ namespace LaProyeccion.UI
         {
             if (panelPlay != null && panelPlay.activeSelf) { ShowMain(); return; }
             if (panelOptions != null && panelOptions.activeSelf) { ShowMain(); return; }
+            if (panelLabs != null && panelLabs.gameObject.activeSelf) { ShowMain(); return; }
             if (panelControls != null && panelControls.gameObject.activeSelf) ShowMain();
         }
 
@@ -132,12 +151,21 @@ namespace LaProyeccion.UI
             Select(panelControls.BotonVolver);
         }
 
+        /// <summary>ANDAMIAJE: lista de laboratorios (solo en el editor).</summary>
+        public void ShowLabs()
+        {
+            if (panelLabs == null) return;
+            SwitchPanel(panelLabs.gameObject);
+            SelectFirstIn(panelLabs.gameObject);
+        }
+
         private void SwitchPanel(GameObject target)
         {
             if (panelMain != null) panelMain.SetActive(target == panelMain);
             if (panelPlay != null) panelPlay.SetActive(target == panelPlay);
             if (panelOptions != null) panelOptions.SetActive(target == panelOptions);
             if (panelControls != null) panelControls.gameObject.SetActive(target == panelControls.gameObject);
+            if (panelLabs != null) panelLabs.gameObject.SetActive(target == panelLabs.gameObject);
         }
 
         /// <summary>
