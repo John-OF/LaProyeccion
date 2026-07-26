@@ -426,6 +426,7 @@ GameObject:
   - component: {fileID: 359310766}
   - component: {fileID: 359310765}
   - component: {fileID: 359310764}
+  - component: {fileID: 359310767}
   m_Layer: 0
   m_Name: Pieza_E2
   m_TagString: Untagged
@@ -558,6 +559,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &359310767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359310762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 0
+  accion: coger
+  radio: 2.4
+  offset: {x: 0, y: 1, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1 &400907871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,6 +1328,7 @@ GameObject:
   - component: {fileID: 589016980}
   - component: {fileID: 589016979}
   - component: {fileID: 589016978}
+  - component: {fileID: 589016981}
   m_Layer: 0
   m_Name: Zocalo_E2
   m_TagString: Untagged
@@ -1452,6 +1472,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &589016981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589016976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 0
+  accion: colocar
+  radio: 2.4
+  offset: {x: 0, y: 1.2, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1001 &653360300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1927,6 +1965,7 @@ GameObject:
   - component: {fileID: 910866761}
   - component: {fileID: 910866760}
   - component: {fileID: 910866759}
+  - component: {fileID: 910866762}
   m_Layer: 0
   m_Name: Pieza_E1
   m_TagString: Untagged
@@ -2059,6 +2098,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &910866762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910866757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 0
+  accion: coger
+  radio: 2.4
+  offset: {x: 0, y: 1, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1 &1103419530
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,6 +2310,7 @@ GameObject:
   - component: {fileID: 1153103303}
   - component: {fileID: 1153103302}
   - component: {fileID: 1153103301}
+  - component: {fileID: 1153103304}
   m_Layer: 0
   m_Name: Zocalo_E3
   m_TagString: Untagged
@@ -2400,6 +2458,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1153103304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153103299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 0
+  accion: colocar
+  radio: 2.4
+  offset: {x: 0, y: 1.2, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1 &1174767817
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,6 +3451,7 @@ GameObject:
   - component: {fileID: 1686958436}
   - component: {fileID: 1686958435}
   - component: {fileID: 1686958434}
+  - component: {fileID: 1686958437}
   m_Layer: 0
   m_Name: Pieza_E3
   m_TagString: Untagged
@@ -3507,6 +3584,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1686958437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686958432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 0
+  accion: coger
+  radio: 2.4
+  offset: {x: 0, y: 1, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1 &1795333536
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,6 +3890,7 @@ GameObject:
   - component: {fileID: 1813765278}
   - component: {fileID: 1813765277}
   - component: {fileID: 1813765276}
+  - component: {fileID: 1813765279}
   m_Layer: 0
   m_Name: Zocalo_E1
   m_TagString: Untagged
@@ -3938,6 +4034,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1813765279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813765274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 0
+  accion: colocar
+  radio: 2.4
+  offset: {x: 0, y: 1.2, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1 &1820186626
 GameObject:
   m_ObjectHideFlags: 0

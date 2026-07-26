@@ -25,6 +25,14 @@ namespace LaProyeccion.Prototipos
     /// </summary>
     public class PortadorDePieza : MonoBehaviour
     {
+        /// <summary>
+        /// Rutas del verbo. **Única fuente de verdad**: con ellas se construye la
+        /// InputAction y con ellas se dibujan los prompts en pantalla, así que
+        /// rebindear aquí cambia también lo que lee el jugador. No duplicarlas.
+        /// </summary>
+        public const string RutaTeclado = "<Keyboard>/t";
+        public const string RutaMando = "<Gamepad>/buttonWest";
+
         [Tooltip("Radio para recoger, colocar y retirar.")]
         [SerializeField, Min(0.5f)] private float alcance = 2.2f;
         [Tooltip("Dónde se ve la pieza mientras la llevas.")]
@@ -46,9 +54,14 @@ namespace LaProyeccion.Prototipos
         private void Awake()
         {
             accion = new InputAction("PiezaDesactivador", InputActionType.Button);
-            accion.AddBinding("<Keyboard>/t");
-            accion.AddBinding("<Gamepad>/buttonWest");
+            accion.AddBinding(RutaTeclado);
+            accion.AddBinding(RutaMando);
             accion.performed += OnAccion;
+
+            // Los prompts en pantalla se configuran desde las MISMAS rutas.
+            foreach (var p in FindObjectsByType<LaProyeccion.UI.PromptDeTecla>(FindObjectsSortMode.None))
+                if (p.Verbo == LaProyeccion.UI.PromptDeTecla.VerboLab.PiezaDesactivador)
+                    p.Configurar(RutaTeclado, RutaMando);
         }
 
         private void OnEnable()
@@ -70,8 +83,44 @@ namespace LaProyeccion.Prototipos
 
         private void Update()
         {
+            ActualizarPrompts();
             if (srCargada == null) return;
             srCargada.color = Time.time < flashHasta ? tintDenegado : colorCargadaOriginal;
+        }
+
+        /// <summary>
+        /// El cartel dice lo que va a pasar AL PULSAR, que depende del contexto: la
+        /// misma tecla coge, suelta, coloca o retira. Un prompt que dijera siempre
+        /// "coger" mentiría la mitad de las veces (Pilar 3).
+        /// Los que no harían nada se ocultan, en vez de ofrecer una acción imposible.
+        /// </summary>
+        private void ActualizarPrompts()
+        {
+            foreach (var pieza in FindObjectsByType<PiezaDesactivador>(FindObjectsSortMode.None))
+            {
+                var prompt = pieza.GetComponent<LaProyeccion.UI.PromptDeTecla>();
+                if (prompt == null) continue;
+
+                bool esLaQueLlevo = cargada == pieza;
+                // Colocada en un zócalo: el cartel lo pone el zócalo ("retirar").
+                prompt.Ocultar(pieza.EstadoActual == PiezaDesactivador.Estado.Colocada);
+                if (esLaQueLlevo) prompt.Accion = "soltar";
+                else if (pieza.EstadoActual == PiezaDesactivador.Estado.Suelta)
+                {
+                    // Si ya llevas una, no puedes coger otra: no ofrezcas hacerlo.
+                    prompt.Ocultar(cargada != null);
+                    prompt.Accion = "coger";
+                }
+            }
+
+            foreach (var zocalo in FindObjectsByType<ZocaloDesactivador>(FindObjectsSortMode.None))
+            {
+                var prompt = zocalo.GetComponent<LaProyeccion.UI.PromptDeTecla>();
+                if (prompt == null) continue;
+
+                if (zocalo.Ocupado) { prompt.Ocultar(cargada != null); prompt.Accion = "retirar"; }
+                else               { prompt.Ocultar(cargada == null);  prompt.Accion = "colocar"; }
+            }
         }
 
         private void OnSwitchDenied()
