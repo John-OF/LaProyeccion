@@ -8274,6 +8274,7 @@ GameObject:
   - component: {fileID: 1714005306}
   - component: {fileID: 1714005305}
   - component: {fileID: 1714005304}
+  - component: {fileID: 1714005308}
   m_Layer: 7
   m_Name: MontonPiedras
   m_TagString: Untagged
@@ -8451,6 +8452,24 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1714005308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714005302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
+  verbo: 1
+  accion: recoger
+  radio: 2.4
+  offset: {x: 0, y: 1, z: 0}
+  tamanoFuente: 2.2
+  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
 --- !u!1 &1764881128
 GameObject:
   m_ObjectHideFlags: 0

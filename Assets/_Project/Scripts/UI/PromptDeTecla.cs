@@ -35,7 +35,8 @@ namespace LaProyeccion.UI
         [SerializeField] private float tamanoFuente = 2.2f;
         [SerializeField] private Color color = new Color(0.92f, 0.96f, 1f, 0.95f);
 
-        public enum VerboLab { PiezaDesactivador }
+        /// <summary>A qué verbo pertenece el cartel: su dueño lo busca por aquí.</summary>
+        public enum VerboLab { PiezaDesactivador, Piedra }
 
         public VerboLab Verbo => verbo;
 
@@ -49,9 +50,30 @@ namespace LaProyeccion.UI
         /// <summary>Lo llama el dueño del verbo con SUS rutas: única fuente de verdad.</summary>
         public void Configurar(string teclado, string mando)
         {
+            if (rutaTeclado == teclado && rutaMando == mando) return;
             rutaTeclado = teclado;
             rutaMando = mando;
             Redibujar();
+        }
+
+        /// <summary>
+        /// Para verbos que SÍ están en `PlayerInputActions` (interactuar, saltar…):
+        /// saca del propio asset la primera ruta de teclado y la primera de mando, así
+        /// que un rebinding se refleja en el cartel sin tocar nada.
+        /// </summary>
+        public void Configurar(UnityEngine.InputSystem.InputAction accion)
+        {
+            if (accion == null) return;
+            string tec = null, man = null;
+            foreach (var b in accion.bindings)
+            {
+                if (b.isComposite || b.isPartOfComposite) continue;
+                string ruta = b.effectivePath;
+                if (string.IsNullOrEmpty(ruta)) continue;
+                if (tec == null && ruta.StartsWith("<Keyboard>")) tec = ruta;
+                if (man == null && ruta.StartsWith("<Gamepad>")) man = ruta;
+            }
+            Configurar(tec ?? rutaTeclado, man ?? rutaMando);
         }
 
         /// <summary>"coger" / "soltar" / "colocar" / "retirar" — lo decide el dueño.</summary>
