@@ -36,6 +36,11 @@ namespace LaProyeccion.Prototipos
     /// - Las <see cref="CajaEmpujable"/> (idea #14, extensión retrocompatible):
     ///   la caja como pisapapeles — aparcada encima mantiene la placa pisada,
     ///   también clavada en el mundo donde no se empuja (sigue siendo sólida).
+    /// - Los <see cref="BloqueSuspendido"/> (extensión retrocompatible 2026-07-26):
+    ///   el peso que cae desde arriba. Es la mitad "herramienta" de esa idea —
+    ///   sueltas el bloque sobre una placa que no podías pisar tú, y se queda.
+    ///   Campo nuevo con default true: las placas ya colocadas en escenas lo
+    ///   heredan sin tocarlas.
     ///
     /// Detección por OverlapBox en Update, SIN OnTriggerEnter/Exit: inmune a
     /// los exits perdidos por teleport/respawn (lección de ZonaDeCambio). Los
@@ -57,6 +62,7 @@ namespace LaProyeccion.Prototipos
         [SerializeField] private bool pisanCorrectores = true;
         [SerializeField] private bool pisanPlataformasCongelables = true;
         [SerializeField] private bool pisanCajas = true;
+        [SerializeField] private bool pisanBloques = true;
 
         [Header("Audio")]
         [Tooltip("Sonido de interruptor al activarse (solo en el flanco de subida).")]
@@ -111,6 +117,7 @@ namespace LaProyeccion.Prototipos
                                          col.GetComponentInParent<CorrectorCongelable>() != null)) return true;
                 if (pisanPlataformasCongelables && col.GetComponentInParent<PlataformaCongelable>() != null) return true;
                 if (pisanCajas && col.GetComponentInParent<CajaEmpujable>() != null) return true;
+                if (pisanBloques && col.GetComponentInParent<BloqueSuspendido>() != null) return true;
             }
             return false;
         }
