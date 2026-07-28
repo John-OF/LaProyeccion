@@ -34,6 +34,14 @@ namespace LaProyeccion.Prototipos
         [Tooltip("Duración total de la corrección: mitad des-render, mitad re-render.")]
         [SerializeField, Min(0.1f)] private float duracion = 0.4f;
 
+        [Header("Leer la muerte (2026-07-27)")]
+        [Tooltip("Segundos CONGELADO en el sitio donde moriste, con la escena aún limpia, antes de " +
+                 "que empiece el glitch. Sin esto el des-render arranca en el mismo frame y tapa " +
+                 "justo lo que te mató: veías el corte, no la causa (Pilar 3).\n\n" +
+                 "ES EL DIAL: súbelo si no da tiempo a ver qué pasó; bájalo si morir se hace pesado " +
+                 "en tramos de muchas caídas. 0 = comportamiento anterior.")]
+        [SerializeField, Min(0f)] private float retardoLectura = 0.45f;
+
         [Tooltip("Tinte del glitch al corregir. Distinto de los tintes del cambio " +
                  "de mundo para que la muerte se LEA como otra cosa (Pilar 3).")]
         [SerializeField] private Color tintCorreccion = new Color(1f, 0.15f, 0.6f);
@@ -106,6 +114,13 @@ namespace LaProyeccion.Prototipos
             // (PlayerController apagado también detiene su chequeo de caída).
             playerRb.simulated = false;
             player.enabled = false;
+
+            // HOLD: quieto donde moriste, con la escena todavía LIMPIA. Es el único momento en que
+            // se puede leer la causa — la estalactita que cayó, el agua en la que entraste, el haz
+            // que te tocó. Va antes del glitch a propósito: el des-render tapa la escena, así que
+            // si arranca en el mismo frame, el jugador ve el efecto y no el motivo.
+            // El congelado ya está hecho arriba, así que durante el hold no se re-disparan triggers.
+            if (retardoLectura > 0f) yield return new WaitForSeconds(retardoLectura);
 
             glitchMaterial.SetColor(TintID, tintCorreccion);
             if (glitchMaterial.HasProperty(SeedID))

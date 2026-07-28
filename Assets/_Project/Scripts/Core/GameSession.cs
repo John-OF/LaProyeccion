@@ -93,7 +93,16 @@ namespace LaProyeccion.Core
         {
             if (player == null) return;
 
+            // El punto de respawn EN MEMORIA se actualiza siempre: es lo que hace que morir en un
+            // laboratorio te devuelva donde toca. Lo que no puede pasar es escribir en disco.
             CurrentRespawn = player.position;
+
+            if (!EscenaGuardable())
+            {
+                // Laboratorio: no se toca la partida real. Ver `bugs.md` 2026-07-18.
+                return;
+            }
+
             SaveSystem.SaveProgress(SceneManager.GetActiveScene().name, player.position);
             SaveSystem.SetWorldUnlocked(WorldManager.Instance != null && WorldManager.Instance.IsSwitchEnabled);
             SaveSystem.SetSwitchStates(SerializeSwitches());
@@ -105,6 +114,24 @@ namespace LaProyeccion.Core
         public static void AutoSave()
         {
             if (Instance != null) Instance.SaveNow();
+        }
+
+        /// <summary>
+        /// ¿La escena activa puede escribir en la partida real? Solo si está en Build Settings.
+        ///
+        /// Las escenas de `Pruebas/` NO lo están, y ese es exactamente el criterio que hace falta:
+        /// abrir un `Gate` en un laboratorio llamaba a `AutoSave` y guardaba el NOMBRE DE LA ESCENA
+        /// DEL LAB, así que "Continuar" desde el menú intentaba cargar en la build una escena que
+        /// allí no existe (`bugs.md`, hallado el 2026-07-18 en `P_CajaEmpujable`).
+        ///
+        /// Se eligió este guard frente a un dial por escena porque es **automático y cero
+        /// configuración**: un lab nuevo queda protegido por el hecho de nacer fuera de Build
+        /// Settings, sin que nadie tenga que acordarse de marcar nada. Justo lo que falla siempre.
+        /// </summary>
+        private static bool EscenaGuardable()
+        {
+            // buildIndex es -1 cuando la escena no está en Build Settings.
+            return SceneManager.GetActiveScene().buildIndex >= 0;
         }
 
         // ==================== Respawn en sesión ====================
