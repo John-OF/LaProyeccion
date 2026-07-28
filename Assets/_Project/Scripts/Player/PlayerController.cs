@@ -48,8 +48,25 @@ namespace LaProyeccion.Player
                  "la raíz lleva la escala que dimensiona el BoxCollider2D. Si se deja vacío, " +
                  "el agachado sigue funcionando pero SIN pose (degradación consciente).")]
         [SerializeField] private Transform visual;
-        [Tooltip("Escala vertical del visual al agacharse (1 = de pie).")]
+        [Tooltip("Escala vertical del visual al agacharse (1 = de pie). SOLO se usa si NO hay " +
+                 "Animator: es el apaño de cuando no existía pose de agachado. Con Animator, la " +
+                 "pose la da el sprite y aplastar además sería aplastar dos veces.")]
         [SerializeField, Range(0.4f, 1f)] private float escalaAgachado = 0.7f;
+
+        [Header("Animación")]
+        [Tooltip("Animator del nodo visual. Si está vacío, todo sigue funcionando sin animación " +
+                 "(SampleScene, cuyo jugador no es instancia del prefab, entra por aquí).")]
+        [SerializeField] private Animator animator;
+        [Tooltip("Renderer que se voltea al mirar a la izquierda. Vacío = se busca en el visual.")]
+        [SerializeField] private SpriteRenderer visualRenderer;
+        [Tooltip("Velocidad horizontal mínima para considerar que el jugador se está girando. " +
+                 "Evita que el sprite parpadee de lado con el stick en reposo.")]
+        [SerializeField, Min(0.01f)] private float umbralGiro = 0.05f;
+
+        private static readonly int PEnSuelo    = Animator.StringToHash("enSuelo");
+        private static readonly int PVelocidadX = Animator.StringToHash("velocidadX");
+        private static readonly int PVelocidadY = Animator.StringToHash("velocidadY");
+        private static readonly int PAgachado   = Animator.StringToHash("agachado");
 
         /// <summary>Va agachado: despacio y en silencio. Solo en el suelo.</summary>
         public bool Agachado { get; private set; }
@@ -87,6 +104,8 @@ namespace LaProyeccion.Player
                 var srVisual = visual.GetComponent<SpriteRenderer>();
                 if (srVisual != null && srVisual.sprite != null)
                     alturaSpriteLocal = srVisual.sprite.bounds.size.y;
+                if (animator == null) animator = visual.GetComponent<Animator>();
+                if (visualRenderer == null) visualRenderer = srVisual;
             }
         }
 
@@ -123,6 +142,8 @@ namespace LaProyeccion.Player
                 Agachado = agacharse;
                 AplicarPose();
             }
+
+            ActualizarVisual();
 
             // Coyote: tiempo de gracia tras dejar el suelo
             if (isGrounded) coyoteCounter = coyoteTime;
@@ -183,9 +204,30 @@ namespace LaProyeccion.Player
         /// que los pies queden clavados en el suelo en vez de flotar. Nunca toca la raíz
         /// (que dimensiona el collider) ni el Rigidbody2D.
         /// </summary>
+        /// <summary>
+        /// Giro y parámetros del Animator. Se hace en Update (no en FixedUpdate) porque es
+        /// presentación: debe seguir al render, no a la física.
+        /// </summary>
+        private void ActualizarVisual()
+        {
+            // GIRO: espejo del renderer, no un estado de animación. Se usa el INPUT y no la
+            // velocidad para que el personaje se gire aunque esté empujando contra una pared.
+            if (visualRenderer != null && Mathf.Abs(moveInput.x) > umbralGiro)
+                visualRenderer.flipX = moveInput.x < 0f;
+
+            if (animator == null) return;
+            animator.SetBool(PEnSuelo, isGrounded);
+            animator.SetFloat(PVelocidadX, Mathf.Abs(rb.linearVelocity.x));
+            animator.SetFloat(PVelocidadY, rb.linearVelocity.y);
+            animator.SetBool(PAgachado, Agachado);
+        }
+
         private void AplicarPose()
         {
             if (visual == null) return;   // sin nodo visual: mecánica sí, pose no
+            // Con Animator hay sprite de agachado, así que aplastar la escala sería aplastar dos
+            // veces. El apaño de la escala solo sigue vivo donde no hay animación.
+            if (animator != null) return;
             if (Agachado)
             {
                 visual.localScale = new Vector3(
