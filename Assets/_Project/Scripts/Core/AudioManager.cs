@@ -52,6 +52,10 @@ namespace LaProyeccion.Core
         [SerializeField] private AudioClip sfxPiedraGolpe;
         [Tooltip("Piedra que cae en AGUA en la cueva (T4): chapoteo. Provisional: sfxDoorOpen a pitch 1.3.")]
         [SerializeField] private AudioClip sfxPiedraAgua;
+        [Tooltip("Intentar cambiar de mundo donde NO HAY otro mundo (la Cueva). Es el 'clic del arma " +
+                 "vacía': dice ausencia, no prohibición — no debe sonar a alarma. Provisional: " +
+                 "sfxWorldSwitch a pitch 0.35 (el cambio de mundo, ahogado: empieza y no llega).")]
+        [SerializeField] private AudioClip sfxCambioAusente;
 
         [Header("Volumes (per-clip multiplier, 0..1)")]
         [Range(0f, 1f)][SerializeField] private float jumpVolume = 0.6f;
@@ -64,6 +68,7 @@ namespace LaProyeccion.Core
         [Range(0f, 1f)][SerializeField] private float radarPulseVolume = 0.9f;
         [Range(0f, 1f)][SerializeField] private float piedraGolpeVolume = 0.8f;
         [Range(0f, 1f)][SerializeField] private float piedraAguaVolume = 0.8f;
+        [Range(0f, 1f)][SerializeField] private float cambioAusenteVolume = 0.55f;
         [Range(0f, 1f)][SerializeField] private float musicVolume = 0.6f;
 
         [Tooltip("Pitch del SFX de semilla (≈1.4 mientras el clip provisional sea el del switch).")]
@@ -74,6 +79,9 @@ namespace LaProyeccion.Core
         [SerializeField, Range(0.3f, 2f)] private float piedraGolpePitch = 0.7f;
         [Tooltip("Pitch del chapoteo de la piedra (≈1.3 mientras el clip provisional sea el de la puerta).")]
         [SerializeField, Range(0.3f, 2f)] private float piedraAguaPitch = 1.3f;
+        [Tooltip("Pitch del cambio ausente (≈0.35 mientras el clip provisional sea el del cambio de " +
+                 "mundo: el mismo sonido, ahogado, para que se lea como 'esto iba a pasar y no pasó').")]
+        [SerializeField, Range(0.2f, 2f)] private float cambioAusentePitch = 0.35f;
 
         // AudioSources creados en runtime
         AudioSource musicSimSource;
@@ -197,6 +205,20 @@ namespace LaProyeccion.Core
             if (clip == null) return;
             sfxPitchedSource.pitch = sfxPiedraAgua != null ? 1f : piedraAguaPitch;
             sfxPitchedSource.PlayOneShot(clip, piedraAguaVolume);
+        }
+
+        /// <summary>
+        /// Intentar cambiar de mundo donde NO HAY otro mundo (la Cueva). El "clic del arma vacía":
+        /// tiene que decir AUSENCIA, no prohibición — el aviso de "Keplin te lo prohíbe" es otro
+        /// (el flash rojo de las zonas de regla). Provisional: el propio sonido del cambio de mundo
+        /// a pitch ≈0.35, o sea el mismo gesto ahogado: empieza y no llega.
+        /// </summary>
+        public void PlayCambioAusente()
+        {
+            var clip = sfxCambioAusente != null ? sfxCambioAusente : sfxWorldSwitch;
+            if (clip == null) return;
+            sfxPitchedSource.pitch = sfxCambioAusente != null ? 1f : cambioAusentePitch;
+            sfxPitchedSource.PlayOneShot(clip, cambioAusenteVolume);
         }
     }
 }

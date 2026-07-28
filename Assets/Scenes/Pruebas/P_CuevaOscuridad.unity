@@ -4200,6 +4200,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF_Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7538073844021325605, guid: b6478988762c5fd4f8ca5d2a25ed7977, type: 3}
+      propertyPath: startingWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7538073844021325605, guid: b6478988762c5fd4f8ca5d2a25ed7977, type: 3}
+      propertyPath: switchEnabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6880,6 +6888,65 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1194988162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194988164}
+  - component: {fileID: 1194988163}
+  m_Layer: 0
+  m_Name: FeedbackCambioAusente
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1194988163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194988162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 001a843dd5d92834392dbfed82ed368b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.CambioAusenteFeedback
+  ringSprite: {fileID: 21300000, guid: c1bd92269bc4b2a42bfe4a48f9fe4be2, type: 3}
+  color: {r: 0.62, g: 0.66, b: 0.7, a: 0.55}
+  radioInicial: 2.2
+  radioFinal: 0.25
+  duracion: 0.32
+  sortingOrder: 40
+  cooldown: 0.25
+  soloUnaVezElMensaje: 1
+  mensaje: "[TEXTO PENDIENTE: primer intento de cambiar de mundo en la Cueva. Es
+    DESCONCIERTO, no conclusi\xF3n: aqu\xED todav\xEDa no sabe que hay una simulaci\xF3n
+    \u2014 eso lo descubre en esta misma zona. La frase que lo explica va DESPU\xC9S
+    del hallazgo, no aqu\xED.]"
+  alMostrarMensaje:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &1194988164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194988162}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1226124644
 GameObject:
   m_ObjectHideFlags: 0
@@ -12139,3 +12206,4 @@ SceneRoots:
   - {fileID: 662591017}
   - {fileID: 2042378573}
   - {fileID: 1385164047}
+  - {fileID: 1194988164}
