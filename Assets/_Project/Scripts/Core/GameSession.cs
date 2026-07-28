@@ -59,6 +59,9 @@ namespace LaProyeccion.Core
                 SaveSystem.NewGameRequested = false;
                 SeedPickup.ClearSessionState();
                 SeedInventory.ResetSession();
+                // Que no arranque una partida nueva "recordando" lo que ya pensó en la anterior:
+                // los pensamientos de una sola vez son estáticos, igual que las semillas recogidas.
+                LaProyeccion.Narrative.PensamientoController.ClearSessionState();
             }
 
             // Al continuar: reposicionar en el punto guardado y restaurar el estado del mundo.

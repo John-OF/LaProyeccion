@@ -45,13 +45,17 @@ namespace LaProyeccion.Prototipos
         [Tooltip("Solo la PRIMERA vez. La primera pulsación es el hito narrativo — pierdes el verbo " +
                  "central del juego —; la decimocuarta ya es vocabulario y el mensaje estorbaría.")]
         [SerializeField] private bool soloUnaVezElMensaje = true;
+        // ⚠️ Cuando llegue el texto de verdad: aquí ella está DESCONCERTADA, no concluyendo. Todavía
+        // no sabe que hay una simulación — eso lo descubre en esta misma zona (§4). La frase que lo
+        // explica va DESPUÉS del hallazgo, no aquí.
+        // Y el placeholder va CORTO a propósito: uno de 40 palabras se queda 13 s en pantalla y no
+        // deja juzgar el ritmo, que es justo lo que hay que validar.
         [TextArea]
         [SerializeField] private string mensaje =
-            "[TEXTO PENDIENTE: primer intento de cambiar de mundo en la Cueva. Es DESCONCIERTO, no " +
-            "conclusión: aquí todavía no sabe que hay una simulación — eso lo descubre en esta misma " +
-            "zona. La frase que lo explica va DESPUÉS del hallazgo, no aquí.]";
-        [Tooltip("A dónde va el texto. Hoy no hay canal de pensamiento del personaje (es su propio " +
-                 "paso); mientras no exista, esto queda sin cablear y el mensaje solo se registra.")]
+            "[TEXTO PENDIENTE: desconcierto, la tecla no responde]";
+        [Tooltip("A dónde va el texto: PensamientoController.PensarImportante. El listener debe estar " +
+                 "en modo DINÁMICO (EventDefined); si se cablea como String fijo, llega vacío y no se " +
+                 "muestra nada — pagado el 2026-07-27.")]
         [SerializeField] private UnityEngine.Events.UnityEvent<string> alMostrarMensaje;
 
         private Transform player;
