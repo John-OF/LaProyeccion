@@ -43,6 +43,7 @@ namespace LaProyeccion.Prototipos
             if (terminada || golpeado) return;
             golpeado = true;
             AudioManager.Instance?.PlayPiedraGolpe();      // golpe seco: hay suelo (T3)
+            RuidoCueva.Emitir(transform.position, TipoRuido.Piedra); // lo oye el GuardianCiego
             StartCoroutine(ReposarYDesaparecer());
         }
 
@@ -54,6 +55,7 @@ namespace LaProyeccion.Prototipos
             if (other.GetComponentInParent<AguaLetal>() == null) return;
             terminada = true;
             AudioManager.Instance?.PlayPiedraAgua();        // chapoteo: es agua (T4)
+            RuidoCueva.Emitir(transform.position, TipoRuido.Piedra); // lo oye el GuardianCiego
             Destroy(gameObject);                            // se hunde
         }
 

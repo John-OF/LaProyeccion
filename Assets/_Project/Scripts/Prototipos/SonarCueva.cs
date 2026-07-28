@@ -66,6 +66,9 @@ namespace LaProyeccion.Prototipos
             if (activo || Time.time - ultimoPulso < cooldown) return;
             ultimoPulso = Time.time;
             AudioManager.Instance?.PlayRadarPulse();           // debe "sonar caro"
+            // ...y puede costar caro de verdad: el GuardianCiego lo oye si `oyeSonar`.
+            // Tu única forma de ver a oscuras sería tu forma de delatarte (dial del prototipo).
+            RuidoCueva.Emitir(transform.position, TipoRuido.Sonar);
             StartCoroutine(Pulso());
             SpawnRing();
         }

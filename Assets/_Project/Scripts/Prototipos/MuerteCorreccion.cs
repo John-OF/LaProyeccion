@@ -60,7 +60,12 @@ namespace LaProyeccion.Prototipos
             if (player != null)
             {
                 playerRb = player.GetComponent<Rigidbody2D>();
-                playerSprite = player.GetComponent<SpriteRenderer>();
+                // GetComponentInChildren, no GetComponent: desde el 2026-07-27 el sprite del
+                // jugador vive en un hijo "Visual" (para que agacharse pueda encogerlo sin
+                // tocar el collider, que lo dimensiona la escala de la raíz). Este método
+                // incluye al propio objeto, así que sigue funcionando con el sprite en la raíz
+                // — SampleScene, cuyo jugador NO es instancia del prefab, no se entera.
+                playerSprite = player.GetComponentInChildren<SpriteRenderer>();
             }
             if (targetCamera == null) targetCamera = Camera.main;
             interceptor = InterceptarRespawn;

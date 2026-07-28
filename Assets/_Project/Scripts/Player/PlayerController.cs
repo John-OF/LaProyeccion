@@ -34,9 +34,32 @@ namespace LaProyeccion.Player
         [Tooltip("Si el jugador cae por debajo de esta altura, reaparece en el último punto seguro.")]
         [SerializeField] private float fallLimit = -50f;
 
+        [Header("Agacharse (2026-07-27) — moverse despacio y en silencio")]
+        // Añadido para el GuardianCiego, que oye moverse al jugador. Se eligió agacharse
+        // frente a un modificador de andar/correr por LEGIBILIDAD (Pilar 3): en la oscuridad
+        // de la cueva, "voy en silencio" tiene que verse en la SILUETA, no vivir en tus dedos.
+        // NO toca el collider a propósito (decisión del autor): es pose + velocidad.
+        // Restricción de diseño que esto impone: JAMÁS construir un paso que exija ir
+        // agachado, porque el cuerpo físico sigue midiendo 1,20 — el visual no puede mentir.
+        [Tooltip("Multiplica moveSpeed al ir agachado. Con moveSpeed=8 y 0.35 -> 2.8, por debajo " +
+                 "del umbral de ruido del GuardianCiego (5): agachado es silencioso.")]
+        [SerializeField, Range(0.1f, 1f)] private float factorAgachado = 0.35f;
+        [Tooltip("Nodo VISUAL que se encoge al agacharse. Debe ser un HIJO, nunca la raíz: " +
+                 "la raíz lleva la escala que dimensiona el BoxCollider2D. Si se deja vacío, " +
+                 "el agachado sigue funcionando pero SIN pose (degradación consciente).")]
+        [SerializeField] private Transform visual;
+        [Tooltip("Escala vertical del visual al agacharse (1 = de pie).")]
+        [SerializeField, Range(0.4f, 1f)] private float escalaAgachado = 0.7f;
+
+        /// <summary>Va agachado: despacio y en silencio. Solo en el suelo.</summary>
+        public bool Agachado { get; private set; }
+
         private Rigidbody2D rb;
         private PlayerInputActions input;
         private Vector2 moveInput;
+        private Vector3 visualEscalaBase;
+        private Vector3 visualPosBase;
+        private float alturaSpriteLocal = 1f;
         private float coyoteCounter;
         private float jumpBufferCounter;
         private bool isGrounded;
@@ -52,6 +75,19 @@ namespace LaProyeccion.Player
             // la física leyendo el Inspector se equivocaba en un 50% (apex real
             // 2.45 u con g=90, no 3.68 con g=60). Fuente de verdad única: el prefab.
             input = new PlayerInputActions();
+
+            if (visual != null)
+            {
+                visualEscalaBase = visual.localScale;
+                visualPosBase = visual.localPosition;
+                // Altura REAL del sprite en unidades locales, no la unidad de escala: el
+                // sprite del jugador no mide 1 (mide ~1.16), así que compensar con 1 dejaba
+                // los pies flotando ~1 px al agacharse. Se lee una vez y no cada frame porque
+                // basta con el sprite base; las animaciones futuras conservan la misma altura.
+                var srVisual = visual.GetComponent<SpriteRenderer>();
+                if (srVisual != null && srVisual.sprite != null)
+                    alturaSpriteLocal = srVisual.sprite.bounds.size.y;
+            }
         }
 
         private void OnEnable()
@@ -78,6 +114,15 @@ namespace LaProyeccion.Player
 
             isGrounded = Physics2D.OverlapCircle(
                 groundCheck.position, groundCheckRadius, groundLayer);
+
+            // Agacharse: solo en el suelo, y con el eje vertical del Move que ya existía
+            // sin usar — cero bindings nuevos (Pilar 4), y en mando cae en el stick abajo.
+            bool agacharse = isGrounded && moveInput.y <= -0.5f;
+            if (agacharse != Agachado)
+            {
+                Agachado = agacharse;
+                AplicarPose();
+            }
 
             // Coyote: tiempo de gracia tras dejar el suelo
             if (isGrounded) coyoteCounter = coyoteTime;
@@ -121,12 +166,38 @@ namespace LaProyeccion.Player
 
         private void FixedUpdate()
         {
-            // Velocidad horizontal directa, sin aceleración exagerada (GDD §4.2)
-            rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+            // Velocidad horizontal directa, sin aceleración exagerada (GDD §4.2).
+            // Agachado solo ESCALA esta velocidad: el salto, la gravedad y el resto de
+            // la física calibrada quedan intactos.
+            float velocidad = Agachado ? moveSpeed * factorAgachado : moveSpeed;
+            rb.linearVelocity = new Vector2(moveInput.x * velocidad, rb.linearVelocity.y);
             // Clamp de velocidad de caída
             if (rb.linearVelocity.y < -maxFallSpeed)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
+            }
+        }
+
+        /// <summary>
+        /// Pose de agachado: encoge el nodo VISUAL y lo baja la mitad de lo encogido, para
+        /// que los pies queden clavados en el suelo en vez de flotar. Nunca toca la raíz
+        /// (que dimensiona el collider) ni el Rigidbody2D.
+        /// </summary>
+        private void AplicarPose()
+        {
+            if (visual == null) return;   // sin nodo visual: mecánica sí, pose no
+            if (Agachado)
+            {
+                visual.localScale = new Vector3(
+                    visualEscalaBase.x, visualEscalaBase.y * escalaAgachado, visualEscalaBase.z);
+                // Baja la MITAD de lo que ha encogido, para que los pies queden clavados.
+                float encogido = visualEscalaBase.y * (1f - escalaAgachado) * alturaSpriteLocal;
+                visual.localPosition = visualPosBase + new Vector3(0f, -encogido * 0.5f, 0f);
+            }
+            else
+            {
+                visual.localScale = visualEscalaBase;
+                visual.localPosition = visualPosBase;
             }
         }
 
