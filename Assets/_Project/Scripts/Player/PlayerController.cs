@@ -27,7 +27,13 @@ namespace LaProyeccion.Player
 
         [Header("Detección de suelo")]
         [SerializeField] private Transform groundCheck;
+        [Tooltip("Semi-ALTURA de la caja de detección: cuánto se mira por encima y por debajo de " +
+                 "groundCheck. Era el radio de un círculo; el alcance vertical es el mismo.")]
         [SerializeField] private float groundCheckRadius = 0.15f;
+        [Tooltip("Cuánto se estrecha la caja respecto al cuerpo, POR CADA LADO. Tiene que ser mayor " +
+                 "que Physics2D.defaultContactOffset (0.01) o una pared pegada al costado contaría " +
+                 "como suelo y se podría saltar en el aire apoyándose en ella.")]
+        [SerializeField, Min(0.02f)] private float margenLateralSuelo = 0.05f;
         [SerializeField] private LayerMask groundLayer;
 
         [Header("Caída")]
@@ -72,6 +78,7 @@ namespace LaProyeccion.Player
         public bool Agachado { get; private set; }
 
         private Rigidbody2D rb;
+        private BoxCollider2D cuerpo;
         private PlayerInputActions input;
         private Vector2 moveInput;
         private Vector3 visualEscalaBase;
@@ -85,6 +92,7 @@ namespace LaProyeccion.Player
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            cuerpo = GetComponent<BoxCollider2D>();
             rb.freezeRotation = true;
             // gravityScale NO se toca aquí: manda el valor del Rigidbody2D (3 en
             // PF_Player). Hasta el 2026-07-16 este Awake lo forzaba a 3 y pisaba
@@ -131,8 +139,7 @@ namespace LaProyeccion.Player
         {
             if (!InputDelegado) moveInput = input.Player.Move.ReadValue<Vector2>();
 
-            isGrounded = Physics2D.OverlapCircle(
-                groundCheck.position, groundCheckRadius, groundLayer);
+            isGrounded = ComprobarSuelo();
 
             // Agacharse: solo en el suelo, y con el eje vertical del Move que ya existía
             // sin usar — cero bindings nuevos (Pilar 4), y en mando cae en el stick abajo.
@@ -197,6 +204,36 @@ namespace LaProyeccion.Player
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
             }
+        }
+
+        /// <summary>
+        /// ¿Hay suelo bajo los pies? Se mira con una CAJA tan ancha como el cuerpo, no con un
+        /// círculo estrecho centrado en el eje.
+        /// Motivo (bug del 2026-08-06, reportado por el autor): el jugador se sostiene con que su
+        /// collider (0,60 de ancho) pise el borde AUNQUE SEA 0,01 u, pero un círculo de radio 0,15
+        /// dejaba de ver el suelo con hasta 0,15 u de apoyo REAL. Al caminar contra una plataforma
+        /// que arranca justo al lado de un borde, el cuerpo queda clavado por esa plataforma con
+        /// medio pie fuera: de pie de verdad, pero el juego lo daba por caído — animación de caída,
+        /// coyote agotado y salto imposible. Bloqueo total salvo retroceder.
+        /// Medido en `P_AparatoPorPiezas`: contra `Real_E3_a` (x=42,50) el jugador se para con el
+        /// centro en x≈42,20, o sea 0,10 u de apoyo sobre `SueloA` (que acaba en x=42,00).
+        /// El alcance VERTICAL no cambia (groundCheck ± groundCheckRadius): el feel calibrado del
+        /// salto y del aterrizaje se queda como estaba. Lo único que cambia es el ANCHO.
+        /// </summary>
+        private bool ComprobarSuelo()
+        {
+            // El eje horizontal se toma del CUERPO, no del groundCheck: lo que sostiene al
+            // jugador es su collider, así que es su anchura la que define dónde hay apoyo.
+            // Se calcula desde el TRANSFORM y no desde 'bounds' a propósito: bounds viene del
+            // cuerpo físico y va un paso por detrás cuando alguien teletransporta al jugador
+            // por transform.position (respawn, PlayerSafePush) — leerlo ahí daría la anchura
+            // en el sitio ANTERIOR. El groundCheck ya se leía del transform: misma frescura.
+            float escalaX = Mathf.Abs(transform.lossyScale.x);
+            float ancho = cuerpo.size.x * escalaX - margenLateralSuelo * 2f;
+            var centro = new Vector2(transform.position.x + cuerpo.offset.x * escalaX,
+                                     groundCheck.position.y);
+            var tamano = new Vector2(Mathf.Max(0.02f, ancho), groundCheckRadius * 2f);
+            return Physics2D.OverlapBox(centro, tamano, 0f, groundLayer);
         }
 
         /// <summary>
@@ -282,12 +319,23 @@ namespace LaProyeccion.Player
             WorldManager.Instance?.TrySwitchWorld();
         }
 
-        // Visualización del ground check en el Editor
+        // Visualización del ground check en el Editor. Se recalcula aquí (sin usar 'cuerpo')
+        // porque en modo edición no ha pasado por Awake.
         private void OnDrawGizmosSelected()
         {
             if (groundCheck == null) return;
+            var box = GetComponent<BoxCollider2D>();
+            float escalaX = Mathf.Abs(transform.lossyScale.x);
+            float ancho = box != null
+                ? Mathf.Max(0.02f, box.size.x * escalaX - margenLateralSuelo * 2f)
+                : groundCheckRadius * 2f;
+            float centroX = box != null
+                ? transform.position.x + box.offset.x * escalaX
+                : groundCheck.position.x;
             Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+            Gizmos.DrawWireCube(
+                new Vector3(centroX, groundCheck.position.y, 0f),
+                new Vector3(ancho, groundCheckRadius * 2f, 0.01f));
         }
     }
 }
