@@ -51,6 +51,13 @@ namespace LaProyeccion.Prototipos
         [Header("Vistazo")]
         [Tooltip("Radio del fantasma alrededor del jugador, en unidades de mundo.")]
         [SerializeField, Min(1f)] private float radio = 6f;
+        [Tooltip("Por defecto el vistazo EXIGE que el cambio de mundo esté desbloqueado, porque " +
+                 "nació como segundo verbo de esa misma tecla (tap = cambiar, hold = mirar): sin " +
+                 "cambio no había nada que acompañar. En el APARATO POR PIEZAS se invierte — el " +
+                 "vistazo ES la etapa 2 y el cambio todavía NO funciona, así que allí hay que " +
+                 "permitirlo con la tecla bloqueada. Se deja en false por defecto para no tocar " +
+                 "el comportamiento ya validado en P_Peek.")]
+        [SerializeField] private bool funcionaConCambioBloqueado = false;
         [Tooltip("Fade de apertura/cierre animando _Reveal.")]
         [SerializeField, Range(0.05f, 0.5f)] private float fadeTime = 0.12f;
 
@@ -157,7 +164,8 @@ namespace LaProyeccion.Prototipos
             if (pressed && !peeking
                 && Time.time - pressTime >= umbralHold
                 && Time.timeScale > 0f
-                && WorldManager.Instance != null && WorldManager.Instance.IsSwitchEnabled
+                && WorldManager.Instance != null
+                && (WorldManager.Instance.IsSwitchEnabled || funcionaConCambioBloqueado)
                 && (radar == null || !radar.Revelando)
                 && GhostReveal.SimMaterial != peekSimMaterial)
             {
