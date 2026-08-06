@@ -1249,6 +1249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.ZocaloDesactivador
   amenazas: []
+  permitirRetirar: 0
   colorVacio: {r: 0.35, g: 0.35, b: 0.4, a: 1}
   colorOcupado: {r: 0.55, g: 0.75, b: 0.9, a: 1}
 --- !u!114 &526982228
@@ -1711,6 +1712,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.ZocaloDesactivador
   amenazas: []
+  permitirRetirar: 0
   colorVacio: {r: 0.35, g: 0.35, b: 0.4, a: 1}
   colorOcupado: {r: 0.55, g: 0.75, b: 0.9, a: 1}
 --- !u!61 &589016979
@@ -3645,6 +3647,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.ZocaloDesactivador
   amenazas: []
+  permitirRetirar: 0
   colorVacio: {r: 0.35, g: 0.35, b: 0.4, a: 1}
   colorOcupado: {r: 0.55, g: 0.75, b: 0.9, a: 1}
 --- !u!61 &1153103302
@@ -5138,6 +5141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.ZocaloDesactivador
   amenazas: []
+  permitirRetirar: 0
   colorVacio: {r: 0.35, g: 0.35, b: 0.4, a: 1}
   colorOcupado: {r: 0.55, g: 0.75, b: 0.9, a: 1}
 --- !u!61 &1813765277

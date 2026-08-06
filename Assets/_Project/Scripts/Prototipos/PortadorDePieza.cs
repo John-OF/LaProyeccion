@@ -118,8 +118,12 @@ namespace LaProyeccion.Prototipos
                 var prompt = zocalo.GetComponent<LaProyeccion.UI.PromptDeTecla>();
                 if (prompt == null) continue;
 
-                if (zocalo.Ocupado) { prompt.Ocultar(cargada != null); prompt.Accion = "retirar"; }
-                else               { prompt.Ocultar(cargada == null);  prompt.Accion = "colocar"; }
+                // Un zócalo SELLADO y ya ocupado no ofrece nada: ocultar el cartel del todo.
+                // Dejarlo diciendo "retirar" sería que el prompt mienta, que es lo único que este
+                // método existe para evitar (Pilar 3).
+                if (zocalo.Ocupado && !zocalo.PuedeRetirar) { prompt.Ocultar(true); }
+                else if (zocalo.Ocupado) { prompt.Ocultar(cargada != null); prompt.Accion = "retirar"; }
+                else                     { prompt.Ocultar(cargada == null);  prompt.Accion = "colocar"; }
             }
         }
 
@@ -188,6 +192,9 @@ namespace LaProyeccion.Prototipos
             foreach (var z in UnityEngine.Object.FindObjectsByType<ZocaloDesactivador>(FindObjectsSortMode.None))
             {
                 if (z.Ocupado == libre) continue;   // libre=true => quiero Ocupado==false
+                // Buscando dónde RETIRAR: un zócalo sellado no es candidato. Hay que descartarlo
+                // aquí y no en Retirar(), o el portador ya se habría quedado con la pieza.
+                if (!libre && !z.PuedeRetirar) continue;
                 float d = Vector2.Distance(transform.position, z.transform.position);
                 if (d > alcance || d >= mejorD) continue;
                 mejor = z; mejorD = d;

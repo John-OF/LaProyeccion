@@ -25,6 +25,13 @@ namespace LaProyeccion.Prototipos
                  "que el set-piece pida un grupo que se lee como una sola cosa.")]
         [SerializeField] private List<MonoBehaviour> amenazas = new List<MonoBehaviour>();
 
+        [Tooltip("Desmarcado = la pieza se INSTALA y ya no sale. Es lo que separa las ranuras del " +
+                 "APARATO DEL CAMBIO (ALCANCE §4, v1.5: se monta y no se desmonta) de la " +
+                 "pieza-desactivador, que existe justo para lo contrario — se transporta y se " +
+                 "recupera porque su coste ES tenerla aquí y no allá. Por defecto true: el " +
+                 "comportamiento validado en P_PiezaDesactivador no cambia.")]
+        [SerializeField] private bool permitirRetirar = true;
+
         [Header("Lectura")]
         [SerializeField] private Color colorVacio = new Color(0.35f, 0.35f, 0.40f);
         [SerializeField] private Color colorOcupado = new Color(0.55f, 0.75f, 0.90f);
@@ -33,6 +40,14 @@ namespace LaProyeccion.Prototipos
         private SpriteRenderer sr;
 
         public bool Ocupado { get; private set; }
+
+        /// <summary>
+        /// Si es false, la pieza puesta aquí es definitiva. Lo consulta `PortadorDePieza`
+        /// **antes** de tocar nada: un zócalo sellado ni siquiera es candidato a recoger, y su
+        /// cartel de tecla se oculta. Si solo se bloqueara `Retirar()`, el portador ya se habría
+        /// quedado con la referencia de la pieza y te la llevarías dejando la ranura ocupada.
+        /// </summary>
+        public bool PuedeRetirar => permitirRetirar;
 
         private void Awake()
         {
@@ -64,7 +79,7 @@ namespace LaProyeccion.Prototipos
         /// <summary>Retira la pieza: todo vuelve, con la fase reiniciada.</summary>
         public void Retirar()
         {
-            if (!Ocupado) return;
+            if (!Ocupado || !permitirRetirar) return;
             Ocupado = false;
             foreach (var e in apagadas) ApagadoDeAmenaza.Restaurar(e);
             apagadas.Clear();

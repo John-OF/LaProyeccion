@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e03bd8a22cb914343898cbeed9bce962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.World.PlatformDual
-  existsIn: 1
+  existsIn: 2
   affectChildren: 0
 --- !u!61 &524050449
 BoxCollider2D:

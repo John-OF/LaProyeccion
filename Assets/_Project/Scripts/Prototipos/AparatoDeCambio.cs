@@ -38,12 +38,20 @@ namespace LaProyeccion.Prototipos
     /// sabes mirar. Si al jugarlo el deshilache se echa de menos en E2+, entonces sí hay que
     /// pagar la deuda de unificar el registro bajo un solo dueño.
     ///
-    /// LAS RANURAS SON `ZocaloDesactivador` SIN AMENAZAS, a propósito: así el bucle de coger,
-    /// cargar (con su coste — no puedes cambiar de mundo llevando una pieza), colocar y
-    /// RETIRAR llega ya validado, con sus prompts y su cableado. No se ensambla un banco
-    /// nuevo: se reutiliza el interactuable que funciona (lección de `P_CuevaOscuridad`).
-    /// Efecto secundario que interesa probar: **se puede sacar una pieza y el aparato BAJA
-    /// de etapa**. Que la regresión se lea bien no es gratis — es parte del playtest.
+    /// LAS RANURAS SON `ZocaloDesactivador` SIN AMENAZAS y con `permitirRetirar = false`, a
+    /// propósito: así el bucle de coger, cargar (con su coste — no puedes cambiar de mundo
+    /// llevando una pieza) y colocar llega ya validado, con sus prompts y su cableado. No se
+    /// ensambla un banco nuevo: se reutiliza el interactuable que funciona (lección de
+    /// `P_CuevaOscuridad`).
+    ///
+    /// ⚠️ LAS PIEZAS NO SE SACAN (decisión del autor 2026-08-05, `ALCANCE.md` §4 v1.5). Es lo
+    /// que separa esto de la pieza-desactivador, que existe justo para lo contrario: aquella se
+    /// transporta y se recupera porque su coste ES tenerla aquí y no allá; ésta se **instala**.
+    /// Cierra por diseño la pregunta de qué significa bajar de etapa, en vez de dejar que el
+    /// jugador la descubra rompiendo el aparato.
+    ///
+    /// El código de bajada de etapa se conserva igualmente: `Reevaluar` no asume que el número
+    /// solo suba. Si algún día una ranura vuelve a ser retirable, sigue funcionando.
     /// </summary>
     public class AparatoDeCambio : MonoBehaviour
     {
