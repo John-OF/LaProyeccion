@@ -36,7 +36,9 @@ namespace LaProyeccion.UI
         [SerializeField] private Color color = new Color(0.92f, 0.96f, 1f, 0.95f);
 
         /// <summary>A qué verbo pertenece el cartel: su dueño lo busca por aquí.</summary>
-        public enum VerboLab { PiezaDesactivador, Piedra }
+        // Se AÑADE al final a propósito: `verbo` se serializa por índice, así que
+        // meter un valor en medio reetiquetaría todos los prompts ya colocados.
+        public enum VerboLab { PiezaDesactivador, Piedra, Agarre }
 
         public VerboLab Verbo => verbo;
 

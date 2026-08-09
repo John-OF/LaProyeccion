@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace LaProyeccion.Prototipos
 {
@@ -35,6 +36,13 @@ namespace LaProyeccion.Prototipos
         [Header("Lectura")]
         [SerializeField] private Color colorVacio = new Color(0.35f, 0.35f, 0.40f);
         [SerializeField] private Color colorOcupado = new Color(0.55f, 0.75f, 0.90f);
+
+        [Header("Eventos (cableado de Inspector)")]
+        [Tooltip("Añadido 2026-08-08 para la Zona 1: una ranura que además de apagar amenazas " +
+                 "puede ENCENDER algo (la llave del ascensor). No cambia nada de lo existente: " +
+                 "sin cablear, se comporta exactamente igual que antes.")]
+        public UnityEvent OnColocada;
+        public UnityEvent OnRetirada;
 
         private readonly List<ApagadoDeAmenaza.Estado> apagadas = new List<ApagadoDeAmenaza.Estado>();
         private SpriteRenderer sr;
@@ -74,6 +82,7 @@ namespace LaProyeccion.Prototipos
                 apagadas.Add(ApagadoDeAmenaza.Apagar(a));
             }
             Pintar();
+            OnColocada?.Invoke();
         }
 
         /// <summary>Retira la pieza: todo vuelve, con la fase reiniciada.</summary>
@@ -84,6 +93,7 @@ namespace LaProyeccion.Prototipos
             foreach (var e in apagadas) ApagadoDeAmenaza.Restaurar(e);
             apagadas.Clear();
             Pintar();
+            OnRetirada?.Invoke();
         }
 
         private void OnDisable()
