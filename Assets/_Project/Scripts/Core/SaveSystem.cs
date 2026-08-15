@@ -18,6 +18,8 @@ namespace LaProyeccion.Core
         const string KeySwitches = "save.switches";
         const string KeySeeds = "save.seeds";
         const string KeySeedsCollected = "save.seedsCollected";
+        const string KeyPulsera = "save.pulsera";
+        const string KeyPiezasAparato = "save.piezasAparato";
 
         /// <summary>
         /// No se persiste: indica que el jugador entró por "Continuar" y que la escena
@@ -111,6 +113,23 @@ namespace LaProyeccion.Core
 
         public static string GetSeedsCollected() => PlayerPrefs.GetString(KeySeedsCollected, "");
 
+        // ==================== El aparato del cambio (ALCANCE §4 v1.6) ====================
+
+        /// <summary>
+        /// Guarda si lleva la pulsera y cuántas piezas tiene. Dos claves y no una: "sin pulsera"
+        /// y "pulsera con 0 piezas" son estados distintos. Ver <see cref="EstadoDelAparato"/>.
+        /// </summary>
+        public static void SetAparato(bool pulsera, int piezas)
+        {
+            PlayerPrefs.SetInt(KeyPulsera, pulsera ? 1 : 0);
+            PlayerPrefs.SetInt(KeyPiezasAparato, Mathf.Max(0, piezas));
+            PlayerPrefs.Save();
+        }
+
+        public static bool GetPulsera() => PlayerPrefs.GetInt(KeyPulsera, 0) == 1;
+
+        public static int GetPiezasAparato() => PlayerPrefs.GetInt(KeyPiezasAparato, 0);
+
         // ==================== Utilidad ====================
 
         /// <summary>Borra la partida guardada por completo.</summary>
@@ -124,6 +143,8 @@ namespace LaProyeccion.Core
             PlayerPrefs.DeleteKey(KeySwitches);
             PlayerPrefs.DeleteKey(KeySeeds);
             PlayerPrefs.DeleteKey(KeySeedsCollected);
+            PlayerPrefs.DeleteKey(KeyPulsera);
+            PlayerPrefs.DeleteKey(KeyPiezasAparato);
             PlayerPrefs.Save();
         }
     }

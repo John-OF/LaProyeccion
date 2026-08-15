@@ -25,8 +25,12 @@ namespace LaProyeccion.World
     public class DestelloAlRecoger : MonoBehaviour
     {
         [Header("Qué vigilar")]
-        [Tooltip("La pieza cuya recogida dispara la grieta.")]
-        [SerializeField] private PiezaDesactivador pieza;
+        [Tooltip("Se dispara cuando el aparato llega a este número de piezas. 1 = la primera, " +
+                 "que es la grieta que cierra el nivel 1.\n\n" +
+                 "Antes vigilaba un `PiezaDesactivador` concreto; desde la v1.6 la pieza se " +
+                 "absorbe y no hay objeto que mirar, así que se mira el CONTADOR — que además " +
+                 "sobrevive a recargar la escena.")]
+        [SerializeField, Min(1)] private int alLlegarAPiezas = 1;
 
         [Header("Qué disparar")]
         [SerializeField] private ParpadeoDeSimulacion parpadeo;
@@ -56,7 +60,7 @@ namespace LaProyeccion.World
 
             if (dispararEn < 0f)
             {
-                if (pieza == null || pieza.EstadoActual == PiezaDesactivador.Estado.Suelta) return;
+                if (LaProyeccion.Core.EstadoDelAparato.Piezas < alLlegarAPiezas) return;
                 dispararEn = Time.time + retardo;
                 return;
             }

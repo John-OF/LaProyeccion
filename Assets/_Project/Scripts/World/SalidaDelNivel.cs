@@ -25,8 +25,9 @@ namespace LaProyeccion.World
     /// **2026-08-14 — ahora el nivel no termina en la puerta, sino BAJANDO AL TÚNEL.** La
     /// puerta vuelve a abrirse de verdad (la placa manda sobre `PuertaSimple`) y este verbo se
     /// muda a la boca del túnel, con una condición nueva del autor: **no se baja sin la
-    /// pulsera ENCENDIDA** (`etapasMinimas = 1`). La razón es diegética y por eso la condición
-    /// vive aquí y no en un Gate: ahí abajo no se ve nada, y la pulsera es la única luz.
+    /// pulsera ENCENDIDA** (`etapasMinimas = 1`, que se consulta a `EstadoDelAparato`). La razón
+    /// es diegética y por eso la condición vive aquí y no en un Gate: ahí abajo no se ve nada, y
+    /// la pulsera es la única luz.
     ///
     /// Una sola condición cierra los dos agujeros del nivel, y ese es el motivo de que se pida
     /// la ETAPA y no el objeto: la pieza no existe hasta que llevas la pulsera, así que exigir
@@ -48,13 +49,9 @@ namespace LaProyeccion.World
         [Tooltip("La puerta. Mientras esté apagado, este verbo no se ofrece siquiera.")]
         [SerializeField] private DualSwitch requiere;
 
-        [Tooltip("Opcional. Con esto puesto, el verbo tampoco se ofrece hasta llevar la " +
-                 "pulsera: al túnel no se baja a oscuras (decisión del autor, 2026-08-14).")]
-        [SerializeField] private PulseraDelPredecesor requierePulsera;
-
-        [Tooltip("Etapas encendidas que hace falta llevar. 0 = basta con tenerla puesta.\n\n" +
+        [Tooltip("Piezas del aparato que hace falta llevar. 0 = sin condición.\n\n" +
                  "1 pide la pulsera ENCENDIDA, y con eso una sola condición cierra dos agujeros: " +
-                 "como la pieza no existe hasta que llevas la pulsera, exigir la etapa 1 exige las " +
+                 "como la pieza no existe hasta que llevas la pulsera, exigir una pieza exige las " +
                  "dos cosas. Y hay UN solo motivo de rechazo, así que el mismo aviso sirve para " +
                  "los dos casos y además es cierto en ambos: apagada alumbra 1,2 u y el hueco es " +
                  "más hondo que eso.")]
@@ -83,8 +80,7 @@ namespace LaProyeccion.World
         /// es un laboratorio, y un campo sin cablear no debe romper la prueba.</summary>
         private bool Permitido =>
             (requiere == null || requiere.IsOn) &&
-            (requierePulsera == null ||
-             (PulseraDelPredecesor.Llevada && PulseraDelPredecesor.Etapas >= etapasMinimas));
+            EstadoDelAparato.Piezas >= etapasMinimas;
 
         private void Awake()
         {
@@ -107,11 +103,10 @@ namespace LaProyeccion.World
 
         private void Update()
         {
-            if (requierePulsera == null) return;
+            if (etapasMinimas <= 0) return;
 
-            // Sondeo, como `DestelloAlRecoger` con la pieza: la pulsera no expone evento.
-            // Se compara contra el collider en vez de guardar una copia del estado — así no
-            // hay una segunda verdad que pueda quedarse vieja al añadir condiciones.
+            // Se compara contra el propio collider en vez de guardar una copia del estado: así
+            // no hay una segunda verdad que pueda quedarse vieja al añadir condiciones.
             if (disparador != null && disparador.enabled != Permitido) Reevaluar();
 
             if (Permitido || yaAvisado || jugador == null) return;

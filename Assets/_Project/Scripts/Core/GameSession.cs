@@ -59,6 +59,9 @@ namespace LaProyeccion.Core
                 SaveSystem.NewGameRequested = false;
                 SeedPickup.ClearSessionState();
                 SeedInventory.ResetSession();
+                // Mismo problema que las semillas: el aparato es estado estático y sobreviviría
+                // a los LoadScene, así que una partida nueva arrancaría con la pulsera puesta.
+                EstadoDelAparato.ClearSessionState();
                 // Que no arranque una partida nueva "recordando" lo que ya pensó en la anterior:
                 // los pensamientos de una sola vez son estáticos, igual que las semillas recogidas.
                 LaProyeccion.Narrative.PensamientoController.ClearSessionState();
@@ -108,6 +111,7 @@ namespace LaProyeccion.Core
             SaveSystem.SetSwitchStates(SerializeSwitches());
             SaveSystem.SetSeeds(SeedInventory.SessionCount);
             SaveSystem.SetSeedsCollected(SeedPickup.SerializeCollected());
+            SaveSystem.SetAparato(EstadoDelAparato.TienePulsera, EstadoDelAparato.Piezas);
         }
 
         /// <summary>Autoguardado conveniente para llamar desde cualquier sistema (p. ej. Gate).</summary>
@@ -192,6 +196,10 @@ namespace LaProyeccion.Core
             // Semillas: inventario y pickups ya recogidos (F1.P4).
             SeedInventory.RestoreSession(SaveSystem.GetSeeds());
             SeedPickup.LoadCollected(SaveSystem.GetSeedsCollected());
+
+            // El aparato: pulsera y piezas (ALCANCE §4 v1.6). Va aquí y no en Awake porque
+            // `PulseraVisual` se suscribe en OnEnable y tiene que enterarse del evento.
+            EstadoDelAparato.RestoreSession(SaveSystem.GetPulsera(), SaveSystem.GetPiezasAparato());
 
             IsRestoring = false;
         }

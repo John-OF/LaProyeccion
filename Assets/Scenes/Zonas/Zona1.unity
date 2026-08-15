@@ -7616,15 +7616,6 @@ MonoBehaviour:
   OnExitRange:
     m_PersistentCalls:
       m_Calls: []
-  portador: {fileID: 242723596}
-  offsetLocal: {x: 0.15, y: 0.1, z: 0}
-  luz: {fileID: 1453432129}
-  intensidadApagada: 0.3
-  radioApagado: 1.2
-  intensidadEtapa1: 1.1
-  radioEtapa1: 2.6
-  subida: 0.9
-  pieza: {fileID: 1925427700}
   revela:
   - {fileID: 1925427699}
 --- !u!114 &1453432129
@@ -8830,7 +8821,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   requiere: {fileID: 0}
-  requierePulsera: {fileID: 1453432128}
   etapasMinimas: 1
   pensamientoSinRequisito: '[TEXTO PENDIENTE: se asoma al hueco y no ve el fondo;
     no baja a oscuras]'
@@ -11770,7 +11760,6 @@ GameObject:
   - component: {fileID: 1925427703}
   - component: {fileID: 1925427702}
   - component: {fileID: 1925427701}
-  - component: {fileID: 1925427700}
   - component: {fileID: 1925427704}
   m_Layer: 6
   m_Name: Pieza1_Aparato
@@ -11779,21 +11768,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1925427700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1925427699}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b285a4377e0d08b418a8735df926d54f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.PiezaDesactivador
-  velocidadPulso: 2
-  amplitudPulso: 0.1
-  colorSuelta: {r: 0.55, g: 1, b: 0.75, a: 1}
 --- !u!61 &1925427701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11801,7 +11775,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925427699}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -11824,7 +11798,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -11838,7 +11812,7 @@ BoxCollider2D:
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.42000002, y: 0.42000002}
+  m_Size: {x: 0.7, y: 0.7}
   m_EdgeRadius: 0.04
 --- !u!212 &1925427702
 SpriteRenderer:
@@ -11923,15 +11897,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925427699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e3d71f6648afca439056387456aa64b, type: 3}
+  m_Script: {fileID: 11500000, guid: 309695729e22a994ea3ff84e8a951b0c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.UI.PromptDeTecla
-  verbo: 0
-  accion: coger
-  radio: 2.2
-  offset: {x: 0, y: 1.1, z: 0}
-  tamanoFuente: 2.2
-  color: {r: 0.92, g: 0.96, b: 1, a: 0.95}
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.World.PiezaDelAparato
+  numero: 1
+  velocidadPulso: 2
+  amplitudPulso: 0.1
+  color: {r: 0.55, g: 1, b: 0.75, a: 1}
 --- !u!1 &2011917945
 GameObject:
   m_ObjectHideFlags: 0
@@ -11961,7 +11933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05e1507384d0c654e94069d6a1816d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.DestelloAlRecoger
-  pieza: {fileID: 1925427700}
+  alLlegarAPiezas: 1
   parpadeo: {fileID: 10884815}
   punto: {fileID: 1501583088}
   retardo: 0.35
