@@ -1,10 +1,10 @@
 using UnityEngine;
 using LaProyeccion.World;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio `Assets/Scenes/Pruebas/`). **IDEA 2** de `_docs/ideas.md`:
+    /// SISTEMA DEL JUEGO (`Zona1` desde 2026-08-14; nació como IDEA 2 de `_docs/ideas.md`). **IDEA 2** de `_docs/ideas.md`:
     /// una columna de lámparas junto a cada rellano que dice **en qué planta está el coche**.
     ///
     /// Qué se está probando: si arregla un agujero de legibilidad real. Hoy, desde el

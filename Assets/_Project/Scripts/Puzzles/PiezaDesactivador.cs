@@ -1,9 +1,11 @@
 using UnityEngine;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.Puzzles
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Pruebas/): la PIEZA-DESACTIVADOR de PLAN_REDISENO §2.
+    /// SISTEMA DEL JUEGO en su uso de PIEZA-LLAVE (`Zona1`: la llave del ascensor).
+    /// ⚠️ Su uso como DESACTIVADOR de amenazas sigue siendo de laboratorio, y promoverlo
+    /// exige enmienda consciente de `ALCANCE.md` (ver `pendientes.md`). la PIEZA-DESACTIVADOR de PLAN_REDISENO §2.
     /// Objeto físico y escaso que se recoge, se TRANSPORTA y se coloca en un
     /// <see cref="ZocaloDesactivador"/> para apagar UNA fuerza de Keplin.
     ///

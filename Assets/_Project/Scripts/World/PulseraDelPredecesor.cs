@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using LaProyeccion.Puzzles;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio `Assets/Scenes/Pruebas/`). LA PULSERA DEL PREDECESOR
+    /// SISTEMA DEL JUEGO (`Zona1` desde 2026-08-14). LA PULSERA DEL PREDECESOR
     /// (`ALCANCE.md` §4 v1.6, decisión del autor 2026-08-13): el aparato del cambio deja de
     /// ser un banco de zócalos y pasa a ser **un objeto que se lleva puesto**; cada pieza
     /// recogida **sube su brillo**, y ese brillo es el único contador que existe (sin HUD).

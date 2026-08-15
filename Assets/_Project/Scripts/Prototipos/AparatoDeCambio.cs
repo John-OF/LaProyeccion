@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using LaProyeccion.Core;
+using LaProyeccion.Player;
+using LaProyeccion.Puzzles;
+using LaProyeccion.World;
 
 namespace LaProyeccion.Prototipos
 {

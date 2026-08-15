@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using LaProyeccion.Prototipos;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.Puzzles
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Pruebas/): el ZÓCALO donde encaja la
+    /// SISTEMA DEL JUEGO en su uso de RECEPTÁCULO (`Zona1`: la ranura del ascensor).
+    /// ⚠️ Su uso para apagar amenazas sigue siendo de laboratorio, y promoverlo exige
+    /// enmienda consciente de `ALCANCE.md` (ver `pendientes.md`). el ZÓCALO donde encaja la
     /// <see cref="PiezaDesactivador"/>. Mientras la pieza esté puesta, apaga las
     /// amenazas de su lista — y las devuelve intactas en cuanto se la llevan.
     ///

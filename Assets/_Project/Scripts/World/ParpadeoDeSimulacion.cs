@@ -4,10 +4,11 @@ using LaProyeccion.Core;
 using LaProyeccion.Player;
 using LaProyeccion.World;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Pruebas/ — fuera de ALCANCE): **la simulación se deshilacha**
+    /// SISTEMA DEL JUEGO: es la **Etapa 1 · Deshilacha** del aparato del cambio
+    /// (`ALCANCE.md` §4 v1.5/v1.6). Corre en `Zona1` desde 2026-08-14. **la simulación se deshilacha**
     /// (idea #16, nunca prototipada). Destellos **breves e involuntarios** del Real en
     /// **puntos fijos** del escenario, mientras estás en la Simulación.
     ///

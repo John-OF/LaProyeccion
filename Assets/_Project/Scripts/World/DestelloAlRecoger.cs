@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.Events;
+using LaProyeccion.Puzzles;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio `Assets/Scenes/Pruebas/`). **IDEA 1** de `_docs/ideas.md`:
+    /// SISTEMA DEL JUEGO (`Zona1` desde 2026-08-14; nació como IDEA 1 de `_docs/ideas.md`). **IDEA 1** de `_docs/ideas.md`:
     /// el mundo se deshilacha UNA vez, justo al recoger la pieza del aparato.
     ///
     /// Qué se está probando: si el último segundo del nivel puede dejar de ser "coges un

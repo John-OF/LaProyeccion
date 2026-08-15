@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using LaProyeccion.Core;
+using LaProyeccion.Puzzles;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.Player
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Pruebas/): quien CARGA la
+    /// SISTEMA DEL JUEGO: el verbo del jugador para coger y soltar piezas (`Zona1`). quien CARGA la
     /// <see cref="PiezaDesactivador"/>, y donde vive su coste.
     ///
     /// Un botón (T / X del mando) hace todo según el contexto: recoger la pieza

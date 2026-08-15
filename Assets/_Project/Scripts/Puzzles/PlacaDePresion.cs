@@ -2,12 +2,14 @@ using UnityEngine;
 using LaProyeccion.Core;
 using LaProyeccion.Player;
 using LaProyeccion.Puzzles;
+using LaProyeccion.Prototipos;
+using LaProyeccion.World;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.Puzzles
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Assets/Scenes/Pruebas/ — fuera de ALCANCE;
-    /// si se valida, exige enmienda consciente de ALCANCE antes de entrar al juego).
+    /// SISTEMA DEL JUEGO (`ALCANCE.md` §4 v1.3, "objetos físicos manipulables"). Corre en
+    /// `Zona1` desde 2026-08-14, y además en varios laboratorios de `Pruebas/`.
     ///
     /// Placa de presión (idea #10 de Claude, 2026-07-17, ideas.md): interruptor
     /// que se PISA en vez de pulsarse — activo mientras algo con presencia esté

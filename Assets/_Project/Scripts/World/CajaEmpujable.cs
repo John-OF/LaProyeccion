@@ -1,11 +1,11 @@
 using UnityEngine;
 using LaProyeccion.Core;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Assets/Scenes/Pruebas/ — fuera de ALCANCE;
-    /// si se valida, exige enmienda consciente de ALCANCE antes de entrar al juego).
+    /// SISTEMA DEL JUEGO (`ALCANCE.md` §4 v1.3, "objetos físicos manipulables"). Corre en
+    /// `Zona1` desde 2026-08-14, y además en varios laboratorios de `Pruebas/`.
     ///
     /// Caja empujable con presencia asimétrica (idea #14): existe y es sólida
     /// en AMBOS mundos, pero solo se puede empujar en <see cref="mundoEmpujable"/>

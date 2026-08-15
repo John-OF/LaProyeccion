@@ -5,10 +5,10 @@ using LaProyeccion.Narrative;
 using LaProyeccion.Player;
 using LaProyeccion.Puzzles;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio `Assets/Scenes/Pruebas/`). **Salir del nivel es un VERBO**, no
+    /// SISTEMA DEL JUEGO (`Zona1` desde 2026-08-14). **Salir del nivel es un VERBO**, no
     /// un borde de pantalla: te plantas en la puerta y pulsas E.
     ///
     /// Qué se está probando (decisión del autor, 2026-08-12): que el final del nivel sea

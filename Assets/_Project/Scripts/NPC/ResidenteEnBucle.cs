@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using LaProyeccion.World;
+using LaProyeccion.Player;
 
 namespace LaProyeccion.NPC
 {
@@ -137,8 +138,8 @@ namespace LaProyeccion.NPC
             // decirle sus rutas aquí o saldría sin glifo.
             var prompt = llave.GetComponent<LaProyeccion.UI.PromptDeTecla>();
             if (prompt != null)
-                prompt.Configurar(LaProyeccion.Prototipos.PortadorDePieza.RutaTeclado,
-                                  LaProyeccion.Prototipos.PortadorDePieza.RutaMando);
+                prompt.Configurar(PortadorDePieza.RutaTeclado,
+                                  PortadorDePieza.RutaMando);
         }
 
         private void Entrar()
