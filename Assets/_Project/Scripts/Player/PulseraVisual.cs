@@ -40,6 +40,20 @@ namespace LaProyeccion.Player
         [Tooltip("Lo que tarda en subir el brillo al sumar una pieza. Que se vea SUBIR.")]
         [SerializeField, Min(0.05f)] private float subida = 0.9f;
 
+        [Header("El punto en la mano (provisional, hasta que haya arte)")]
+        [Tooltip("Un cuadradito de ~3 px que se enciende al llevar la pulsera. NO es el arte " +
+                 "definitivo: el día que la silueta lleve la pulsera dibujada, esto se apaga y " +
+                 "manda el sprite. Mientras tanto, que se vea DÓNDE está la pulsera y no solo su " +
+                 "resplandor.")]
+        [SerializeField] private SpriteRenderer punto;
+        [Tooltip("A qué distancia del centro va la mano. Se espeja según hacia dónde mira.")]
+        [SerializeField] private Vector2 offsetMano = new Vector2(0.20f, -0.05f);
+        [Tooltip("Renderer del jugador, para saber hacia dónde mira. El giro es por flipX, no " +
+                 "por escala, así que un hijo NO se voltea solo: hay que espejarlo a mano.")]
+        [SerializeField] private SpriteRenderer visualJugador;
+        [SerializeField] private Color colorApagada = new Color(0.45f, 0.75f, 0.92f);
+        [SerializeField] private Color colorCompleta = new Color(0.95f, 1f, 1f);
+
         [Header("El sprite (canal de mañana)")]
         [Tooltip("Vacío = se busca en este objeto o en sus hijos.")]
         [SerializeField] private Animator animator;
@@ -56,6 +70,11 @@ namespace LaProyeccion.Player
         {
             if (luz == null) luz = GetComponentInChildren<Light2D>(true);
             if (animator == null) animator = GetComponentInChildren<Animator>(true);
+            if (visualJugador == null)
+            {
+                var pc = GetComponent<PlayerController>();
+                if (pc != null) visualJugador = pc.GetComponentInChildren<SpriteRenderer>(true);
+            }
 
             if (animator != null && animator.runtimeAnimatorController != null)
                 foreach (var p in animator.parameters)
@@ -81,6 +100,17 @@ namespace LaProyeccion.Player
             int etapa = EstadoDelAparato.TienePulsera ? EstadoDelAparato.Piezas : -1;
 
             if (tieneParametro) animator.SetInteger(parametroEtapa, etapa + 1);
+
+            if (punto != null)
+            {
+                punto.enabled = etapa >= 0;
+                if (etapa >= 0)
+                {
+                    float k = EstadoDelAparato.PiezasTotales > 0
+                        ? Mathf.Clamp01(etapa / (float)EstadoDelAparato.PiezasTotales) : 0f;
+                    punto.color = Color.Lerp(colorApagada, colorCompleta, k);
+                }
+            }
 
             if (luz == null) return;
 
@@ -122,6 +152,22 @@ namespace LaProyeccion.Player
             luz.pointLightInnerRadius = luz.pointLightOuterRadius * 0.25f;
 
             if (k >= 1f) t = -1f;
+        }
+
+        /// <summary>
+        /// La pulsera va en UNA mano, así que tiene que cambiar de lado al girarse. Se hace aquí
+        /// y no colgando el punto del nodo visual porque el giro del jugador es `flipX` del
+        /// renderer, y `flipX` **no voltea a los hijos**: solo afecta a su propio sprite.
+        /// En LateUpdate para leer el giro que `PlayerController` acaba de decidir en su Update.
+        /// </summary>
+        private void LateUpdate()
+        {
+            if (!EstadoDelAparato.TienePulsera || visualJugador == null) return;
+
+            float signo = visualJugador.flipX ? -1f : 1f;
+            var p = new Vector3(offsetMano.x * signo, offsetMano.y, 0f);
+            if (punto != null) punto.transform.localPosition = p;
+            if (luz != null) luz.transform.localPosition = p;
         }
 
         private static float Leer(float[] tabla, int i, float porDefecto)
