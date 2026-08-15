@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 5652331858621224946}
   - component: {fileID: 8443642919589800826}
   - component: {fileID: 2281242890432565133}
+  - component: {fileID: 3031203165474844812}
   m_Layer: 0
   m_Name: PF_Player
   m_TagString: Untagged
@@ -614,6 +615,24 @@ MonoBehaviour:
   colorCompleta: {r: 0.95, g: 1, b: 1, a: 1}
   animator: {fileID: 8270811607323671277}
   parametroEtapa: etapaPulsera
+--- !u!114 &3031203165474844812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811386461826851986}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedbaa6cae849294887eacf4fc844620, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LaProyeccion.Prototipos.WorldPeekController
+  peekSimMaterial: {fileID: 2100000, guid: c1c3516f72a220f4ba861b216fa5546a, type: 2}
+  peekRealMaterial: {fileID: 2100000, guid: ea9ea449a21eb7040bcd0bb72eb496ad, type: 2}
+  umbralHold: 0.25
+  radio: 6
+  funcionaConCambioBloqueado: 1
+  fadeTime: 0.12
 --- !u!1 &8441448398085314432
 GameObject:
   m_ObjectHideFlags: 0

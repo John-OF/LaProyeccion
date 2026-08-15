@@ -1,10 +1,10 @@
 using UnityEngine;
 using LaProyeccion.Puzzles;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Pruebas/): puerta que se abre con un DualSwitch,
+    /// SISTEMA DEL JUEGO: puerta que se abre mientras un DualSwitch este activo, SIN autoguardado. puerta que se abre con un DualSwitch,
     /// como Gate pero SIN autoguardado — las escenas de laboratorio no deben
     /// escribir save.*. Si el nivel se promueve al juego, se sustituye por Gate.
     /// </summary>

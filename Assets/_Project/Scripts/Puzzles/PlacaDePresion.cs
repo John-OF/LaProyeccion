@@ -65,6 +65,10 @@ namespace LaProyeccion.Puzzles
         [SerializeField] private bool pisanPlataformasCongelables = true;
         [SerializeField] private bool pisanCajas = true;
         [SerializeField] private bool pisanBloques = true;
+        [Tooltip("Los NPCs residentes (extensión retrocompatible 2026-08-14). Con esto en true y " +
+                 "`pisaJugador` en FALSE sale el puzzle de la calle: una placa que solo responde a " +
+                 "los habitantes de la simulación, nunca a ti. La lectura del nivel, hecha regla.")]
+        [SerializeField] private bool pisanResidentes = true;
 
         [Header("Audio")]
         [Tooltip("Sonido de interruptor al activarse (solo en el flanco de subida).")]
@@ -120,6 +124,7 @@ namespace LaProyeccion.Puzzles
                 if (pisanPlataformasCongelables && col.GetComponentInParent<PlataformaCongelable>() != null) return true;
                 if (pisanCajas && col.GetComponentInParent<CajaEmpujable>() != null) return true;
                 if (pisanBloques && col.GetComponentInParent<BloqueSuspendido>() != null) return true;
+                if (pisanResidentes && col.GetComponentInParent<LaProyeccion.NPC.ResidenteEnBucle>() != null) return true;
             }
             return false;
         }

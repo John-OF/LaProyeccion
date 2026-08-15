@@ -2,11 +2,10 @@ using UnityEngine;
 using LaProyeccion.Core;
 using LaProyeccion.Player;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.World
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Assets/Scenes/Pruebas/ — fuera de ALCANCE;
-    /// si se valida, exige enmienda consciente de ALCANCE antes de entrar al juego).
+    /// SISTEMA DEL JUEGO (`Zona1_N3_Calle` desde 2026-08-14, y en varios laboratorios).
     ///
     /// Objetos que se congelan al cambiar (idea #3 de Claude, 2026-07-13,
     /// ideas.md): plataforma que se mueve por su raíl A↔B mientras estás en su

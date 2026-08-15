@@ -5,11 +5,10 @@ using LaProyeccion.Core;
 using LaProyeccion.Player;
 using LaProyeccion.World;
 
-namespace LaProyeccion.Prototipos
+namespace LaProyeccion.Player
 {
     /// <summary>
-    /// PROTOTIPO (laboratorio Assets/Scenes/Pruebas/ — fuera de ALCANCE;
-    /// si se valida, exige enmienda consciente de ALCANCE antes de entrar al juego).
+    /// SISTEMA DEL JUEGO: es la **Etapa 2 - Vistazo** del aparato (`ALCANCE.md` §4 v1.5/v1.6).
     ///
     /// Vistazo al otro mundo — "peek" (idea #1 de Claude, 2026-07-13, ideas.md):
     /// la tecla de cambio de mundo gana dos verbos:

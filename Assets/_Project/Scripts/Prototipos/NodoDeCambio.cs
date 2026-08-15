@@ -8,7 +8,7 @@ namespace LaProyeccion.Prototipos
     /// <summary>
     /// PROTOTIPO (laboratorio Assets/Scenes/Pruebas/ — fuera de ALCANCE).
     ///
-    /// NODO DE CAMBIO — la etapa 3 del <see cref="AparatoDeCambio"/>: con tres piezas de
+    /// NODO DE CAMBIO — la etapa 3 del aparato (<see cref="LaProyeccion.Core.AplicadorDeEtapa"/>): con tres piezas de
     /// cuatro, el aparato ya consigue cambiar de mundo, pero **solo aquí dentro**. Fuera,
     /// la tecla no responde.
     ///
@@ -21,7 +21,7 @@ namespace LaProyeccion.Prototipos
     /// añadirle un modo invertido obligaría a re-validarlos.
     ///
     /// NO GUARDA FOTO DEL ESTADO ANTERIOR, a diferencia de `ZonaDeCambio` y
-    /// `PortadorDePieza`: al salir le pregunta al aparato (<see cref="AparatoDeCambio.ReaplicarPuerta"/>).
+    /// `PortadorDePieza`: al salir le pregunta al aparato (<see cref="LaProyeccion.Core.AplicadorDeEtapa.ReaplicarPuerta"/>).
     /// Con foto, colocar la 4ª pieza estando dentro de un nodo dejaría al salir un
     /// "estaba bloqueado" caducado y el aparato completo se apagaría solo, sin error.
     /// Un solo dueño de la puerta global.
@@ -48,7 +48,7 @@ namespace LaProyeccion.Prototipos
 
         private BoxCollider2D zona;
         private Transform jugador;
-        private AparatoDeCambio aparato;
+        private LaProyeccion.Core.AplicadorDeEtapa aparato;
         private bool armado;
         private bool jugadorDentro;
         private Coroutine flash;
@@ -78,7 +78,7 @@ namespace LaProyeccion.Prototipos
 
         /// <summary>Lo llama el aparato al cambiar de etapa. Fuera de la etapa 3 el nodo
         /// sigue viéndose (es una pista de lo que vendrá) pero no hace nada.</summary>
-        public void Armar(AparatoDeCambio duenio, bool activo)
+        public void Armar(LaProyeccion.Core.AplicadorDeEtapa duenio, bool activo)
         {
             aparato = duenio;
             if (armado == activo) { Pintar(); return; }
