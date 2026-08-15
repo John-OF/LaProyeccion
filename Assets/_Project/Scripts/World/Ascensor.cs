@@ -72,6 +72,8 @@ namespace LaProyeccion.World
 
         /// <summary>Índice de la parada donde está parado (o de la que salió si va en marcha).</summary>
         public int ParadaActual => paradaActual;
+        /// <summary>Adónde va. Igual a <see cref="ParadaActual"/> cuando está quieto.</summary>
+        public int ParadaObjetivo => paradaObjetivo;
         public bool EnMovimiento => enMovimiento;
         public bool Bloqueado => bloqueado;
         public int NumeroDeParadas => paradasY != null ? paradasY.Length : 0;

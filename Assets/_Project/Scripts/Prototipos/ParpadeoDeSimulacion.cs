@@ -160,6 +160,30 @@ namespace LaProyeccion.Prototipos
         }
 
         /// <summary>
+        /// Dispara UN destello YA, saltándose el reloj (añadido 2026-08-09 para el momento
+        /// guionizado de la Zona 1: la primera grieta, al recoger la pieza). Respeta las
+        /// mismas guardas que el goteo ambiental —registro `GhostReveal` libre, en
+        /// Simulación, materiales puestos— y devuelve **false** si no pudo, para que quien
+        /// lo pide pueda reintentarlo en vez de creerse que sonó.
+        ///
+        /// Retrocompatible: nada lo llama solo, así que el comportamiento ambiental de
+        /// `P_AparatoPorPiezas` no cambia.
+        /// </summary>
+        public bool DestellarAhora(Transform punto = null)
+        {
+            if (destellando || !enSimulacion || alguienDestellando) return false;
+            if (radar != null && radar.Revelando) return false;
+            if (!GhostReveal.Ready && (parpadeoSimMaterial == null || parpadeoRealMaterial == null)) return false;
+
+            Transform p = punto != null ? punto : ElegirPunto();
+            if (p == null) return false;
+
+            ProgramarSiguiente();   // el goteo ambiental se reengancha después de este
+            StartCoroutine(Destellar(p.position));
+            return true;
+        }
+
+        /// <summary>
         /// Un punto al azar de entre los que el jugador podría llegar a ver. Al azar y no
         /// por turnos: un patrón regular se aprende, y esto tiene que parecer un fallo.
         /// </summary>
