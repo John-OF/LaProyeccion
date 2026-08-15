@@ -8835,7 +8835,7 @@ MonoBehaviour:
   pensamientoSinRequisito: '[TEXTO PENDIENTE: se asoma al hueco y no ve el fondo;
     no baja a oscuras]'
   radioAviso: 2.5
-  escenaSiguiente: 
+  escenaSiguiente: Zona1_N2_Tunel
 --- !u!114 &1524695975
 MonoBehaviour:
   m_ObjectHideFlags: 0
