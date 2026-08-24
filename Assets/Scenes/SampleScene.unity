@@ -33292,6 +33292,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   fallLimit: -50
+  factorAgachado: 0.35
+  visual: {fileID: 0}
+  escalaAgachado: 0.7
 --- !u!61 &734157984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35258,6 +35261,7 @@ MonoBehaviour:
   musicSimGroup: {fileID: -6408403606744297493, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
   musicRealGroup: {fileID: -7233686924617112894, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
   sfxGroup: {fileID: -3946740955898096758, guid: 10685eb7a31061b4189fb617d7653e01, type: 2}
+  otroMundoGroup: {fileID: 0}
   musicSimulation: {fileID: 8300000, guid: 8f4be22792707bb468abbbf52552759b, type: 3}
   musicReal: {fileID: 8300000, guid: 301937417e614f242a428b03b0bbf386, type: 3}
   sfxJump: {fileID: 8300000, guid: 13b0bdc3dbe12464fac7f44c8f894ff3, type: 3}
@@ -35268,6 +35272,9 @@ MonoBehaviour:
   sfxDeath: {fileID: 0}
   sfxSeedPickup: {fileID: 0}
   sfxRadarPulse: {fileID: 0}
+  sfxPiedraGolpe: {fileID: 0}
+  sfxPiedraAgua: {fileID: 0}
+  sfxCambioAusente: {fileID: 0}
   jumpVolume: 0.6
   worldSwitchVolume: 0.8
   doorOpenVolume: 0.9
@@ -35276,9 +35283,15 @@ MonoBehaviour:
   deathVolume: 0.8
   seedPickupVolume: 0.7
   radarPulseVolume: 0.9
+  piedraGolpeVolume: 0.8
+  piedraAguaVolume: 0.8
+  cambioAusenteVolume: 0.55
   musicVolume: 0.6
   seedPickupPitch: 1.4
   radarPulsePitch: 0.6
+  piedraGolpePitch: 0.7
+  piedraAguaPitch: 1.3
+  cambioAusentePitch: 0.35
 --- !u!4 &1671635746
 Transform:
   m_ObjectHideFlags: 0
