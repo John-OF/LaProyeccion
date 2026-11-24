@@ -64,6 +64,14 @@ namespace LaProyeccion.World
         void ApplyState()
         {
             if (WorldManager.Instance == null) return;
+
+            // Un objeto que nació inactivo aún no ha pasado por Awake, pero el radar y el
+            // deshilache lo encuentran igual (buscan también inactivos) y le piden el fantasma.
+            // Sin esta guarda, la excepción cortaba el destello a medias y lo dejaba "en curso"
+            // para siempre — y con él todos los demás, porque el turno es global.
+            // No hay nada que aplicar: lo inactivo no se dibuja. Al activarse, OnEnable se pone al día.
+            if (colliders == null) return;
+
             bool present = WorldManager.Instance.CurrentWorld == belongsTo;
 
             foreach (var c in colliders) if (c != null) c.enabled = present;
